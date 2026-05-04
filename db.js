@@ -3,7 +3,7 @@ const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 
-app.use(express.static("."));
+app.use(express.static("Frontend"));
 app.use(express.json());
 
 const datum = new Date().toISOString().split("T")[0];
