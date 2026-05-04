@@ -1,23 +1,25 @@
-# Wir wechseln auf das volle Bookworm-Image (moderner & kompatibler)
+# Wir nutzen die Standard-Node Version (kein slim!)
 FROM node:20-bookworm
 
-# Arbeitsverzeichnis festlegen
+# System-Tools für den Build von sqlite3 installieren
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# System-Abhängigkeiten für SQLite sicherheitshalber installieren
-RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
-
-# Erst die Listen kopieren
+# NUR package-Dateien kopieren
 COPY package*.json ./
 
-# Alles frisch installieren
-RUN npm install
+# WICHTIG: Wir löschen evtl. vorhandene Reste und bauen sqlite3 neu für Linux
+RUN npm install && npm rebuild sqlite3 --build-from-source
 
-# Den Rest des Codes kopieren
+# Jetzt erst den Rest kopieren
 COPY . .
 
-# Port freigeben
 EXPOSE 3000
 
-# Startbefehl
 CMD ["node", "db.js"]
