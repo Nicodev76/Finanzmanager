@@ -1,18 +1,23 @@
-# Wir nutzen Node.js Version 20
-FROM node:20-slim
+# Wir wechseln auf das volle Bookworm-Image (moderner & kompatibler)
+FROM node:20-bookworm
 
-# Arbeitsverzeichnis im Container
+# Arbeitsverzeichnis festlegen
 WORKDIR /app
 
-# Kopiere die Paketlisten und installiere Abhängigkeiten
+# System-Abhängigkeiten für SQLite sicherheitshalber installieren
+RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+
+# Erst die Listen kopieren
 COPY package*.json ./
+
+# Alles frisch installieren
 RUN npm install
 
-# Kopiere den Rest des Codes (Frontend, db.js, etc.)
+# Den Rest des Codes kopieren
 COPY . .
 
-# Dein Backend nutzt Port 3000
+# Port freigeben
 EXPOSE 3000
 
-# Starte die App
+# Startbefehl
 CMD ["node", "db.js"]
