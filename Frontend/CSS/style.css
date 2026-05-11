@@ -92,20 +92,79 @@ nav a:hover {
   font-weight: bolder;
 }
 
-.gesamt_output{
- background-color: rgb(255, 255, 255, 0.0);
- border: none;
- color: white;
-}
-
-.einnahmen_output{
-  background-color: rgb(255, 255, 255, 0.0);
+.gesamt_output {
+  background-color: rgb(255, 255, 255, 0);
   border: none;
   color: white;
 }
 
-.ausgaben_output{
-  background-color: rgb(255, 255, 255, 0.0);
+.einnahmen_output {
+  background-color: rgb(255, 255, 255, 0);
   border: none;
   color: white;
+}
+
+.ausgaben_output {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: white;
+}
+
+@media (max-width: 2300px) {
+  .übersicht_feld {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
+
+@media (max-width: 2000px) {
+  .main {
+    width: 1300px;
+  }
+
+  .diagramm_div {
+    width: 1000px;
+    height: 500px;
+  }
+
+  .übersicht_feld {
+    width: 1000px;
+    height: 300px;
+    justify-content: center;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    width: 500px;
+  }
+
+  .diagramm_div {
+    width: 400px;
+    height: 300px;
+  }
+
+  .übersicht_feld {
+    width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a:hover {
+    background-color: rgba(109, 193, 109, 0.1);
+    color: white;
+    border-radius: 15px;
+    font-weight: 600;
+  }
+  nav{
+    width: 130px;
+  }
+
+  .dashboard-container {
+    width: 250px;
+  }
+  
 }
