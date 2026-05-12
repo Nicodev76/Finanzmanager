@@ -25,6 +25,7 @@ async function allesLadenUndAnzeigen() {
     document.getElementById("ausgaben_output").value = ausgaben.toFixed(2) + "€";
     document.getElementById("gesamt_output").value = gesamt.toFixed(2) + "€";
 
+    window.aktualisierenDiagramm();
 }
 
 window.onload = allesLadenUndAnzeigen;
@@ -67,5 +68,6 @@ async function addAusgabe() {
 
     allesLadenUndAnzeigen();
 }
+
 
 
