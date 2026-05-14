@@ -20,7 +20,7 @@
       </nav>
     </div>
 
-    <div class="main_dasboard">  
+    <div class="main_dashboard">  
       <div class="main">
         <div class="diagramm_div">
           <div id="mainFinanzChart"></div>
@@ -61,7 +61,7 @@
       <div class="portfolio_field">
         <h2>Portfolio</h2>
 
-        <div>
+        <div class="kategorie_div">
           <h3>gebe die Kategorie an</h3>
 
           <select class="kategorie_select" id="inputKategorie">
@@ -72,18 +72,18 @@
           </select>
         </div>
 
-        <div>
+        <div class="betrag_div">
           <h3>gebe den Betrag an</h3>
           <input
             class="betrag_input"
             id="inputBetrag"
             type="number"
-            placeholder="Betrag"
+            placeholder="0.00€"
           />
         </div>
 
-        <div>
-          <button class="Einnahme_btn btn" onclick="addEinnahme()">
+          <div class="portfolio_btns_div">
+            <button class="Einnahme_btn btn" onclick="addEinnahme()">
             Einnahme speichern
           </button>
           <button class="Ausgabe_btn btn" onclick="addAusgabe()">
@@ -91,6 +91,26 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <div class="accounts_dashboard">
+      <h1>Accounts</h1>
+    </div>
+
+    <div class="transactions_dashboard">
+      <h1>Transactions</h1>
+    </div>
+
+    <div class="budgets_dashboard">
+      <h1>Budgets</h1>
+    </div>
+
+    <div class="reports_dashboard">
+      <h1>Reports</h1>
+    </div>
+
+    <div class="settings_dashboard">
+      <h1>Settings</h1>
     </div>
 
     <script src="JS/dashboard.js"></script>

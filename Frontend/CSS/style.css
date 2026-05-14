@@ -5,7 +5,7 @@
   border: 1px solid rgb(255, 255, 255, 0.2);
   border-left: none;
   border-top: none;
-  background-color: rgba(109, 193, 109, 0.04);
+  background-color: rgba(65, 77, 93);
   backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: rgba(109, 193, 109, 0.1);
+  background-color: rgba(72, 93, 114);
   color: white;
   border-radius: 15px;
   margin: auto;
@@ -35,7 +35,7 @@ nav a:hover {
 .diagramm_div {
   width: 1300px;
   height: 600px;
-  background-color: gray;
+  background-color: rgb(36, 48, 62);
   margin-top: 25px;
 }
 
@@ -55,32 +55,61 @@ nav a:hover {
 }
 
 .portfolio_field {
-  width: 500px;
-  margin-right: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
 
-  -webkit-box-shadow: 38px 13px 31px -12px rgba(0, 0, 0, 0.26);
-  box-shadow: 38px 13px 31px -12px rgba(0, 0, 0, 0.26);
-  background-color: rgba(206, 206, 206, 0.274);
-  backdrop-filter: blur(8px);
-  border-radius: 25px;
+  width: 450px;
+  margin-right: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 
-  padding: 20px;
+  background-color: rgba(39, 51, 67);
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.kategorie_div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.betrag_div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.portfolio_btns_div{
+  display: flex;
 }
 
 .kategorie_select {
   width: 80%;
   height: 40px;
-  background-color: rgb(255, 255, 255, 0.8);
-  border-radius: 25px;
+
+  color: white;
+
+  border-radius: 10px;
+  border: rgb(56, 70, 85) 2px solid;
+
+  background-color: rgb(34, 42, 57);
 }
 
 .betrag_input {
-  width: 200px;
+  width: 80%;
   height: 40px;
   font-size: large;
   font-weight: bolder;
+  
+  border-radius: 10px;
+  border: rgb(56, 70, 85) 2px solid;
+
+  background-color: rgb(34, 42, 57);
+
 }
 
 .btn {

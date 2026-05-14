@@ -1,25 +1,25 @@
 let mainDiagramm;
 
 async function datenFuerDiagramm() {
-    
-    const antwort = await fetch("/daten-holen");
-    const alleEintraege = await antwort.json();
+  const antwort = await fetch("/daten-holen");
+  const alleEintraege = await antwort.json();
 
-    let monatsdaten = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let monatsdaten = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-    alleEintraege.forEach((eintrag) => {
+  alleEintraege.forEach((eintrag) => {
+    let datum = new Date(eintrag.datum);
 
-        let datum = new Date(eintrag.datum);
+    let monatsIndex = datum.getMonth();
 
-        let monatsIndex = datum.getMonth();
+    monatsdaten[monatsIndex] += eintrag.betrag;
+  });
 
-        monatsdaten[monatsIndex] += eintrag.betrag;
-    });
-
-    mainDiagramm.updateSeries([{ 
-        name: "Umsatz",
-        data: monatsdaten
-     }]);
+  mainDiagramm.updateSeries([
+    {
+      name: "Umsatz",
+      data: monatsdaten,
+    },
+  ]);
 }
 
 function diagrammInitialisieren() {
@@ -42,20 +42,13 @@ function diagrammInitialisieren() {
     ],
 
     xaxis: {
-      categories: [
-        "Januar",
-        "Februar",
-        "März",
-        "April",
-        "Mai",
-        "Juni",
-        "Juli",
-        "August",
-        "September",
-        "Oktober",
-        "November",
-        "Dezember",
-      ],
+      categories: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+
+      labels: {
+        style: {
+          colors: "#ffffff",
+        },
+      },
     },
 
     //Hab hier ist das sytling vom diagramm.
@@ -88,6 +81,14 @@ function diagrammInitialisieren() {
     marker: {
       show: true,
     },
+
+    yaxis: {
+      labels: {
+        style: {
+          colors: "#ffffff",
+        }
+      }
+    },
   };
 
   mainDiagramm = new ApexCharts(chartElement, optionen);
@@ -96,7 +97,6 @@ function diagrammInitialisieren() {
 
   datenFuerDiagramm();
 }
-
 
 window.addEventListener("DOMContentLoaded", diagrammInitialisieren);
 

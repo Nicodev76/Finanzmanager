@@ -1,0 +1,23 @@
+.main_dashboard {
+  display: flex;
+}
+
+.accounts_dashboard {
+  display: none;
+}
+
+.transactions_dashboard {
+  display: none;
+}
+
+.budgets_dashboard {
+  display: none;
+}
+
+.reports_dashboard {
+  display: none;
+}
+
+.settings_dashboard {
+  display: none;
+}
