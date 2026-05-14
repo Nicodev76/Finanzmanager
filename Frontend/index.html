@@ -11,86 +11,89 @@
   <body>
     <div class="dashboard-container">
       <nav>
-        <a href="#">Dashboard</a>
-        <a href="#">Accounts</a>
-        <a href="#">Transactions</a>
-        <a href="#">Budgets</a>
-        <a href="#">Reports</a>
-        <a href="#">Settings</a>
+        <a href="#" onclick="Dashboard()">Dashboard</a>
+        <a href="#" onclick="Accounts()">Accounts</a>
+        <a href="#" onclick="Transactions()">Transactions</a>
+        <a href="#" onclick="Budgets()">Budgets</a>
+        <a href="#" onclick="Reports()">Reports</a>
+        <a href="#" onclick="Settings()">Settings</a>
       </nav>
     </div>
 
-    <div class="main">
-      <div class="diagramm_div">
-        <div id="mainFinanzChart"></div>
+    <div class="main_dasboard">  
+      <div class="main">
+        <div class="diagramm_div">
+          <div id="mainFinanzChart"></div>
+        </div>
+
+        <div class="übersicht_feld">
+          <div class="gesamt_field übersicht">
+            <h2>Gesamt</h2>
+
+            <input
+              type="text"
+              class="gesamt_output"
+              id="gesamt_output"
+              readonly
+            />
+          </div>
+          <div class="einnahmen_field übersicht">
+            <h2>Einnahmen</h2>
+            <input
+              type="text"
+              class="einnahmen_output"
+              id="einnahmen_output"
+              readonly
+            />
+          </div>
+          <div class="ausgabe_field übersicht">
+            <h2>Ausgaben</h2>
+            <input
+              type="text"
+              class="ausgaben_output"
+              id="ausgaben_output"
+              readonly
+            />
+          </div>
+        </div>
       </div>
 
-      <div class="übersicht_feld">
-        <div class="gesamt_field übersicht">
-          <h2>Gesamt</h2>
+      <div class="portfolio_field">
+        <h2>Portfolio</h2>
 
+        <div>
+          <h3>gebe die Kategorie an</h3>
+
+          <select class="kategorie_select" id="inputKategorie">
+            <option value="essen">Essen & Trinken</option>
+            <option value="freizeit">Freizeit</option>
+            <option value="wohnen">Miete & Wohnen</option>
+            <option value="gehalt">Gehalt</option>
+          </select>
+        </div>
+
+        <div>
+          <h3>gebe den Betrag an</h3>
           <input
-            type="text"
-            class="gesamt_output"
-            id="gesamt_output"
-            readonly
+            class="betrag_input"
+            id="inputBetrag"
+            type="number"
+            placeholder="Betrag"
           />
         </div>
-        <div class="einnahmen_field übersicht">
-          <h2>Einnahmen</h2>
-          <input
-            type="text"
-            class="einnahmen_output"
-            id="einnahmen_output"
-            readonly
-          />
-        </div>
-        <div class="ausgabe_field übersicht">
-          <h2>Ausgaben</h2>
-          <input
-            type="text"
-            class="ausgaben_output"
-            id="ausgaben_output"
-            readonly
-          />
+
+        <div>
+          <button class="Einnahme_btn btn" onclick="addEinnahme()">
+            Einnahme speichern
+          </button>
+          <button class="Ausgabe_btn btn" onclick="addAusgabe()">
+            Ausgabe speichern
+          </button>
         </div>
       </div>
     </div>
 
-    <div class="portfolio_field">
-      <h2>Portfolio</h2>
-
-      <div>
-        <h3>gebe die Kategorie an</h3>
-
-        <select class="kategorie_select" id="inputKategorie">
-          <option value="essen">Essen & Trinken</option>
-          <option value="freizeit">Freizeit</option>
-          <option value="wohnen">Miete & Wohnen</option>
-          <option value="gehalt">Gehalt</option>
-        </select>
-      </div>
-
-      <div>
-        <h3>gebe den Betrag an</h3>
-        <input
-          class="betrag_input"
-          id="inputBetrag"
-          type="number"
-          placeholder="Betrag"
-        />
-      </div>
-
-      <div>
-        <button class="Einnahme_btn btn" onclick="addEinnahme()">
-          Einnahme speichern
-        </button>
-        <button class="Ausgabe_btn btn" onclick="addAusgabe()">
-          Ausgabe speichern
-        </button>
-      </div>
-    </div>
-
+    <script src="JS/dashboard.js"></script>
     <script src="JS/apexcharts.min.js"></script>
     <script src="/JS/chart.js"></script>
     <script src="/JS/script.js"></script>

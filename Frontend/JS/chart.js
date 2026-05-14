@@ -27,7 +27,7 @@ function diagrammInitialisieren() {
 
   let optionen = {
     chart: {
-      type: "area",
+      type: "line",
       height: 350,
       toolbar: {
         show: false,
