@@ -6,7 +6,20 @@
     margin-top: 25px;
 }
 
-.main_portfolio_tabelle_div {
+.main_portfolio_tabelle {
+    max-height: 300px;
+    overflow-y: scroll;
+    scrollbar-color: rgba(65, 77, 93) rgb(18, 25, 41);
+    scrollbar-width: 50px;
 
-    overflow-y: auto;
+}
+
+.main_portfolio_tabelle li {
+    font-size: large;
+    font-weight: bolder;
+    gap: 50px;
+    margin-right: 25px;
+
+    color: green;
+
 }
