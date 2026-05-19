@@ -4,21 +4,37 @@ async function datenFuerDiagramm() {
   const antwort = await fetch("/daten-holen");
   const alleEintraege = await antwort.json();
 
-  let monatsdaten = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let einnahmen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let ausgaben = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let gesamt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   alleEintraege.forEach((eintrag) => {
     let datum = new Date(eintrag.datum);
 
     let monatsIndex = datum.getMonth();
 
-    monatsdaten[monatsIndex] += eintrag.betrag;
+    gesamt[monatsIndex] += eintrag.betrag;
+
+    if (eintrag.betrag > 0) {
+      einnahmen[monatsIndex] += eintrag.betrag;
+    } else {
+      ausgaben[monatsIndex] -= eintrag.betrag;
+    }
   });
 
   mainDiagramm.updateSeries([
     {
-      name: "Umsatz",
-      data: monatsdaten,
+      name: "Gesamt in €",
+      data: gesamt,
     },
+    {
+      name: "Einnahmen in €",
+      data: einnahmen,
+    },
+    {
+      name: "Ausgaben in €",
+      data: ausgaben,
+    }
   ]);
 }
 
@@ -28,7 +44,7 @@ function diagrammInitialisieren() {
   let optionen = {
     chart: {
       type: "line",
-      height: 350,
+      height: 900,
       toolbar: {
         show: false,
       },
@@ -36,7 +52,17 @@ function diagrammInitialisieren() {
 
     series: [
       {
-        name: "Umsatz",
+        name: "Gesamt in €",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+
+      {
+        name: "Einnahmen in €",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+
+      {
+        name: "Ausgaben in €",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
     ],
@@ -53,7 +79,7 @@ function diagrammInitialisieren() {
 
     //Hab hier ist das sytling vom diagramm.
 
-    colors: ["#00E296"],
+    colors: ["#0074D9", "#2ECC40", "#FF4136"],
     stroke: {
       curve: "smooth",
       width: 3,
@@ -86,8 +112,8 @@ function diagrammInitialisieren() {
       labels: {
         style: {
           colors: "#ffffff",
-        }
-      }
+        },
+      },
     },
   };
 

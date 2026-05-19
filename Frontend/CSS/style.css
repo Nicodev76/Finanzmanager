@@ -13,6 +13,7 @@
 
   -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.57);
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.57);
+
 }
 
 nav a {
@@ -33,18 +34,18 @@ nav a:hover {
 }
 
 .diagramm_div {
-  width: 1300px;
-  height: 600px;
+  width: 1800px;
+  height: 1000px;
   background-color: rgb(36, 48, 62);
   margin-top: 25px;
 }
 
 .main {
-  width: 1700px;
-  height: 100vh;
+  width: 1800px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 .übersicht_feld {
   width: 1500px;
@@ -66,6 +67,7 @@ nav a:hover {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
 }
 
@@ -109,6 +111,7 @@ nav a:hover {
   border: rgb(56, 70, 85) 2px solid;
 
   background-color: rgb(34, 42, 57);
+  color: white;
 
 }
 
@@ -139,6 +142,16 @@ nav a:hover {
   color: white;
 }
 
+@media (max-width: 2560px) {
+  .main_dashboard {
+    width: 2360px;
+  }
+  
+  .main {
+    width: 1910px;
+  }
+}
+
 @media (max-width: 2300px) {
   .übersicht_feld {
     margin-left: 25px;
@@ -147,9 +160,7 @@ nav a:hover {
 }
 
 @media (max-width: 2000px) {
-  .main {
-    width: 1300px;
-  }
+  
 
   .diagramm_div {
     width: 1000px;
