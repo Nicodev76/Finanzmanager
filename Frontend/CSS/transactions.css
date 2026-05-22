@@ -1,42 +1,46 @@
 .transactions_main {
-    width: 2000px;
+  width: 2000px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .transactions_div {
-    width: 1800px;
-    height: 1200px;
+  width: 1800px;
+  height: 1200px;
 
-    border-radius: 15px;
-    margin-top: 25px;
+  border-radius: 15px;
+  margin-top: 25px;
 
-    background-color: rgb(36, 48, 62);
+  background-color: rgb(36, 48, 62);
 
-    padding: 25px;
+  padding: 25px;
 }
 
-.transactzins_list_div{
-    width: 100%;
-    height: 1000px;
+.transactzins_list_div {
+  width: 100%;
+  height: 1000px;
 }
 
-.transactions_header{
-    display: flex;
-    justify-content: space-between;
+.transactions_header {
+  display: flex;
+  justify-content: space-between;
 
-    margin-left: 25px;
-    margin-right: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
-.betrag_h3_plus{
-    color: green;
+.betrag_h3_plus {
+  color: green;
 }
 
-.betrag_h3_minus{
-    color: red;
+.betrag_h3_minus {
+  color: red;
+}
+
+@media (max-width: 1920px) {
+    .transactions_div{
+        width: 1400px;
+    }
 }
