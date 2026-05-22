@@ -25,7 +25,8 @@ app.post("/speichern", (req, res) => {
 
   const datumHeute = new Date().toISOString().split("T")[0];
 
-  const sql = "INSERT INTO finanzdaten (datum, kategorie, betrag) VALUES (?, ?, ?)";
+  const sql =
+    "INSERT INTO finanzdaten (datum, kategorie, betrag) VALUES (?, ?, ?)";
 
   db.run(sql, [datumHeute, kategorie, betrag], function (err) {
     if (err) {
@@ -44,6 +45,20 @@ app.get("/daten-holen", (req, res) => {
       res.status(500).send("Fehler beim Abrufen der Daten");
     } else {
       res.json(rows);
+    }
+  });
+});
+
+app.delete("/eintrag-loeschen/:id", (req, res) => {
+  const eintragId = req.params.id;
+
+  const sql = "DELETE FROM finanzdaten WHERE id = ?";
+
+  db.run(sql, [eintragId], function (err) {
+    if (err) {
+      res.status(500).send("Fehler beim Löschen des Eintrags");
+    } else {
+      res.send("Eintrag gelöscht");
     }
   });
 });
