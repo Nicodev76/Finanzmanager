@@ -157,6 +157,25 @@ nav a:hover {
     margin-left: 25px;
     margin-right: 25px;
   }
+
+
+}
+
+@media (width = 1920px) {
+  .main {
+    width: 1300px;
+  }
+
+  .diagramm_div {
+    width: 1500px;
+    height: 800px;
+  }
+
+  .übersicht_feld {
+    width: 1500px;
+    height: 400px;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 2000px) {
@@ -172,6 +191,7 @@ nav a:hover {
     height: 300px;
     justify-content: center;
     gap: 25px;
+
   }
 }
 

@@ -13,12 +13,14 @@ async function datenFuerDiagramm() {
 
     let monatsIndex = datum.getMonth();
 
-    gesamt[monatsIndex] += eintrag.betrag;
+    let betragAlsZahl = parseFloat(eintrag.betrag);
 
-    if (eintrag.betrag > 0) {
-      einnahmen[monatsIndex] += eintrag.betrag;
+    gesamt[monatsIndex] += betragAlsZahl;
+
+    if (betragAlsZahl > 0) {
+      einnahmen[monatsIndex] += betragAlsZahl;
     } else {
-      ausgaben[monatsIndex] -= eintrag.betrag;
+      ausgaben[monatsIndex] -= betragAlsZahl;
     }
   });
 
@@ -34,7 +36,7 @@ async function datenFuerDiagramm() {
     {
       name: "Ausgaben in €",
       data: ausgaben,
-    }
+    },
   ]);
 }
 
@@ -44,7 +46,7 @@ function diagrammInitialisieren() {
   let optionen = {
     chart: {
       type: "line",
-      height: 900,
+      height: "90%",
       toolbar: {
         show: false,
       },
@@ -68,7 +70,20 @@ function diagrammInitialisieren() {
     ],
 
     xaxis: {
-      categories: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+      categories: [
+        "Januar",
+        "Februar",
+        "März",
+        "April",
+        "Mai",
+        "Juni",
+        "Juli",
+        "August",
+        "September",
+        "Oktober",
+        "November",
+        "Dezember",
+      ],
 
       labels: {
         style: {
@@ -109,6 +124,7 @@ function diagrammInitialisieren() {
     },
 
     yaxis: {
+      forceNiceScale: true,
       labels: {
         style: {
           colors: "#ffffff",
