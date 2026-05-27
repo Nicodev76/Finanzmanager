@@ -1,85 +1,53 @@
-let minusDiagramm;
+let Pluswerte;
+let Minuswerte;
+
+let Pluslabels;
+let Minuslabels;
+
 let PlusDiagramm;
-
-let plusEssen = 0;
-let PlusFreizeit = 0;
-let PlusWohnen = 0;
-let PlusGehalt = 0;
-
-let minusEssen = 0;
-let minusFreizeit = 0;
-let minusWohnen = 0;
-let minusGehalt = 0;
+let minusDiagramm;
 
 async function datenFürDiagramm() {
   const antwort = await fetch("/daten-holen");
   const alleEintraege = await antwort.json();
 
-  plusEssen = 0;
-  PlusFreizeit = 0;
-  PlusWohnen = 0;
-  PlusGehalt = 0;
-
-  minusEssen = 0;
-  minusFreizeit = 0;
-  minusWohnen = 0;
-  minusGehalt = 0;
+  // KORREKTUR 1: Sammler direkt als leere Objekte {} starten!
+  let plusSammler = {};
+  let minusSammler = {};
 
   alleEintraege.forEach((eintrag) => {
-    if (eintrag.kategorie === "essen") {
-      console.log("Kategorie essen erkannt ");
+    if (eintrag.betrag > 0) {
+      let kategorie = eintrag.kategorie;
+      let betrag = eintrag.betrag;
 
-      if (eintrag.betrag > 0) {
-        plusEssen += eintrag.betrag;
-      } else if (eintrag.betrag < 0) {
-        minusEssen -= eintrag.betrag;
-      } else {
-        console.log("Es gibt einen fehelr der betrag ist nicht positiv und auch icht negativ melden sie diesen fehler bitte das er behoben wird.");
+      // KORREKTUR 2: Überall "plusSammler" mit kleinem "p" genutzt
+      if (!plusSammler[kategorie]) {
+        plusSammler[kategorie] = 0;
       }
-    } else if (eintrag.kategorie === "freizeit") {
-      console.log("Kategorie freizeit erkannt ");
 
-      if (eintrag.betrag > 0) {
-        PlusFreizeit += eintrag.betrag;
-      } else if (eintrag.betrag < 0) {
-        minusFreizeit -= eintrag.betrag;
-      } else {
-        console.log("Es gibt einen fehelr der betrag ist nicht positiv und auch icht negativ melden sie diesen fehler bitte das er behoben wird.");
+      plusSammler[kategorie] += betrag;
+      // KORREKTUR 3: Das verirrte "F;" wurde gelöscht
+
+    } else if (eintrag.betrag < 0) {
+      let kategorie = eintrag.kategorie;
+      let betrag = eintrag.betrag;
+
+      if (!minusSammler[kategorie]) {
+        minusSammler[kategorie] = 0;
       }
-    } else if (eintrag.kategorie === "wohnen") {
-      console.log("Kategorie wohnen erkannt ");
-      if (eintrag.betrag > 0) {
-        PlusWohnen += eintrag.betrag;
-      } else if (eintrag.betrag < 0) {
-        minusWohnen -= eintrag.betrag;
-      } else {
-        console.log("Es gibt einen fehelr der betrag ist nicht positiv und auch icht negativ melden sie diesen fehler bitte das er behoben wird.");
-      }
-    } else if (eintrag.kategorie === "gehalt") {
-      console.log("Kategorie gehalt erkannt ");
-      if (eintrag.betrag > 0) {
-        PlusGehalt += eintrag.betrag;
-      } else if (eintrag.betrag < 0) {
-        minusGehalt -= eintrag.betrag;
-      } else {
-        console.log("Es gibt einen fehelr der betrag ist nicht positiv und auch icht negativ melden sie diesen fehler bitte das er behoben wird.");
-      }
+
+      minusSammler[kategorie] -= betrag;
     } else {
-      console.log(
-        "Es gibt einen fehler die kategory wurde nicht erkannt melden sie den fehler bitte das er behoben wird und geben sie die kategory an die nicht erkannt wurde mit einem bild von dieser fehlermeldung damit wir den fehler schneller beheben können die kategory lautet " +
-          eintrag.kategorie,
-      );
+      console.log("Fehler: Betrag ist 0");
     }
   });
 
-  console.log("Plus Essen: " + plusEssen);
-  console.log("Plus Freizeit: " + PlusFreizeit);
-  console.log("Plus Wohnen: " + PlusWohnen);
-  console.log("Plus Gehalt: " + PlusGehalt);
-  console.log("Minus Essen: " + minusEssen);
-  console.log("Minus Freizeit: " + minusFreizeit);
-  console.log("Minus Wohnen: " + minusWohnen);
-  console.log("Minus Gehalt: " + minusGehalt);
+  // KORREKTUR 2b: Variablen-Namen exakt wie oben definiert (Großes P und M)
+  Pluswerte = Object.values(plusSammler);
+  Minuswerte = Object.values(minusSammler);
+  
+  Pluslabels = Object.keys(plusSammler);
+  Minuslabels = Object.keys(minusSammler);
 }
 
 async function diagrammUpdate() {
@@ -97,8 +65,14 @@ async function diagrammUpdate() {
       },
     },
 
-    series: [plusEssen, PlusFreizeit, PlusWohnen, PlusGehalt],
-    labels: ["Essen", "Freizeit", "Wohnen", "Gehalt"],
+    legend: {
+      labels: {
+        colors: "#ffffff",
+      },
+    },
+    // KORREKTUR 4: Eckige Klammern entfernt, da die Variablen schon Arrays sind
+    series: Pluswerte,
+    labels: Pluslabels,
   };
 
   let optionenMinus = {
@@ -109,8 +83,15 @@ async function diagrammUpdate() {
         show: false,
       },
     },
-    series: [minusEssen, minusFreizeit, minusWohnen, minusGehalt],
-    labels: ["Essen", "Freizeit", "Wohnen", "Gehalt"],
+
+    legend: {
+      labels: {
+        colors: "#ffffff",
+      },
+    },
+    // KORREKTUR 4: Eckige Klammern entfernt
+    series: Minuswerte,
+    labels: Minuslabels,
   };
 
   if (PlusDiagramm) {
