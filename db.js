@@ -15,7 +15,7 @@ app.use(
     secret: "dein_geheimer_schluessel_fuer_cookies",
     resave: false,
     saveUninitialized: false,
-  })
+  }),
 );
 
 // 2. Startseite festlegen
@@ -23,8 +23,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/Frontend/login.html");
 });
 
-// 3. Datenbank verbinden und Tabellen erstellen
-const db = new sqlite3.Database("meine_finazen.db");
+const path = require("path");
+const db = new sqlite3.Database(path.join(__dirname, "meine_finazen.db"));
 
 db.serialize(() => {
   db.run(`
@@ -60,14 +60,17 @@ app.post("/registrieren", async (req, res) => {
     }
 
     if (row) {
-      return res.status(400).json({ error: "Benutzername ist bereits vergeben" });
+      return res
+        .status(400)
+        .json({ error: "Benutzername ist bereits vergeben" });
     } else {
       bcrypt.hash(passwort, 10, (err, hash) => {
         if (err) {
           console.error("Fehler beim Hashen des Passworts:", err.message);
           return res.status(500).json({ error: "Interner Serverfehler" });
         } else {
-          const insertSql = "INSERT INTO benutzer (benutzername, passwort) VALUES (?, ?)";
+          const insertSql =
+            "INSERT INTO benutzer (benutzername, passwort) VALUES (?, ?)";
 
           db.run(insertSql, [benutzername, hash], (err) => {
             if (err) {
@@ -75,7 +78,9 @@ app.post("/registrieren", async (req, res) => {
               return res.status(500).json({ error: "Interner Serverfehler" });
             } else {
               // SCHICKT SAUBERES JSON!
-              res.status(201).json({ message: "Benutzer erfolgreich registriert" });
+              res
+                .status(201)
+                .json({ message: "Benutzer erfolgreich registriert" });
             }
           });
         }
@@ -93,12 +98,16 @@ app.post("/login", (req, res) => {
 
   db.get(sql, [benutzername], (err, user) => {
     if (err || !user) {
-      return res.status(400).json({ error: "Benutzername oder Passwort falsch" });
+      return res
+        .status(400)
+        .json({ error: "Benutzername oder Passwort falsch" });
     }
 
     bcrypt.compare(passwort, user.passwort, (err, isMatch) => {
       if (err || !isMatch) {
-        return res.status(400).json({ error: "Benutzername oder Passwort falsch" });
+        return res
+          .status(400)
+          .json({ error: "Benutzername oder Passwort falsch" });
       }
 
       // Login erfolgreich – Session erstellen
@@ -136,15 +145,20 @@ app.post("/speichern", (req, res) => {
 
   const { kategorie, betrag } = req.body;
   const datumHeute = new Date().toISOString().split("T")[0];
-  const sql = "INSERT INTO finanzdaten (benutzer_id, datum, kategorie, betrag) VALUES (?, ?, ?, ?)";
+  const sql =
+    "INSERT INTO finanzdaten (benutzer_id, datum, kategorie, betrag) VALUES (?, ?, ?, ?)";
 
-  db.run(sql, [req.session.benutzerId, datumHeute, kategorie, betrag], function (err) {
-    if (err) {
-      res.status(500).json({ error: "Fehler beim Speichern" });
-    } else {
-      res.json({ message: "Gespeichert!" }); // Als JSON umgewandelt
-    }
-  });
+  db.run(
+    sql,
+    [req.session.benutzerId, datumHeute, kategorie, betrag],
+    function (err) {
+      if (err) {
+        res.status(500).json({ error: "Fehler beim Speichern" });
+      } else {
+        res.json({ message: "Gespeichert!" }); // Als JSON umgewandelt
+      }
+    },
+  );
 });
 
 // ==========================================
