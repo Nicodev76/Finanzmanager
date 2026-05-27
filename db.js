@@ -1,68 +1,173 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
+const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 const app = express();
 
+// 1. Middleware einrichten
 app.use(express.static("Frontend"));
 app.use(express.json());
 
-const datum = new Date().toISOString().split("T")[0];
+// SESSIONS EINRICHTEN: Muss vor den Routen stehen!
+app.use(
+  session({
+    secret: "dein_geheimer_schluessel_fuer_cookies",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
+// 2. Startseite festlegen
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/Frontend/login.html");
+});
+
+// 3. Datenbank verbinden und Tabellen erstellen
 const db = new sqlite3.Database("meine_finazen.db");
-const bauplan = `
-  CREATE TABLE IF NOT EXISTS finanzdaten (
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    datum     TEXT NOT NULL,
-    kategorie TEXT NOT NULL,
-    betrag    REAL NOT NULL
-  )
-`;
 
-db.run(bauplan);
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS benutzer (
+      id            INTEGER PRIMARY KEY AUTOINCREMENT,
+      benutzername  TEXT UNIQUE NOT NULL,
+      passwort      TEXT NOT NULL
+    )
+  `);
 
-app.post("/speichern", (req, res) => {
-  const { kategorie, betrag } = req.body;
+  db.run(`
+    CREATE TABLE IF NOT EXISTS finanzdaten (
+      id            INTEGER PRIMARY KEY AUTOINCREMENT,
+      benutzer_id   INTEGER NOT NULL,
+      datum         TEXT NOT NULL,
+      kategorie     TEXT NOT NULL,
+      betrag        REAL NOT NULL
+    )
+  `);
+});
 
-  const datumHeute = new Date().toISOString().split("T")[0];
+// ==========================================
+// ROUTE: REGISTRIEREN (Saubere Version)
+// ==========================================
+app.post("/registrieren", async (req, res) => {
+  const { benutzername, passwort } = req.body;
+  const sql = "SELECT * FROM benutzer WHERE benutzername = ?";
 
-  const sql =
-    "INSERT INTO finanzdaten (datum, kategorie, betrag) VALUES (?, ?, ?)";
-
-  db.run(sql, [datumHeute, kategorie, betrag], function (err) {
+  db.get(sql, [benutzername], (err, row) => {
     if (err) {
-      res.status(500).send("Fehler beim Speichern");
+      console.error("Fehler bei der Datenbankabfrage:", err.message);
+      return res.status(500).json({ error: "Interner Serverfehler" });
+    }
+
+    if (row) {
+      return res.status(400).json({ error: "Benutzername ist bereits vergeben" });
     } else {
-      res.send("Gespeichert mit Datum: " + datumHeute);
+      bcrypt.hash(passwort, 10, (err, hash) => {
+        if (err) {
+          console.error("Fehler beim Hashen des Passworts:", err.message);
+          return res.status(500).json({ error: "Interner Serverfehler" });
+        } else {
+          const insertSql = "INSERT INTO benutzer (benutzername, passwort) VALUES (?, ?)";
+
+          db.run(insertSql, [benutzername, hash], (err) => {
+            if (err) {
+              console.error("Fehler beim Einfügen des Benutzers:", err.message);
+              return res.status(500).json({ error: "Interner Serverfehler" });
+            } else {
+              // SCHICKT SAUBERES JSON!
+              res.status(201).json({ message: "Benutzer erfolgreich registriert" });
+            }
+          });
+        }
+      });
     }
   });
 });
 
-app.get("/daten-holen", (req, res) => {
-  const sql = "SELECT * FROM finanzdaten";
+// ==========================================
+// ROUTE: LOGIN (Perfekt als JSON)
+// ==========================================
+app.post("/login", (req, res) => {
+  const { benutzername, passwort } = req.body;
+  const sql = "SELECT * FROM benutzer WHERE benutzername = ?";
 
-  db.all(sql, [], (err, rows) => {
+  db.get(sql, [benutzername], (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({ error: "Benutzername oder Passwort falsch" });
+    }
+
+    bcrypt.compare(passwort, user.passwort, (err, isMatch) => {
+      if (err || !isMatch) {
+        return res.status(400).json({ error: "Benutzername oder Passwort falsch" });
+      }
+
+      // Login erfolgreich – Session erstellen
+      req.session.benutzerId = user.id;
+      res.json({ message: "Login erfolgreich" });
+    });
+  });
+});
+
+// ==========================================
+// ROUTE: DATEN HOLEN
+// ==========================================
+app.get("/daten-holen", (req, res) => {
+  if (!req.session.benutzerId) {
+    return res.status(401).json({ error: "Bitte zuerst einloggen!" });
+  }
+
+  const sql = "SELECT * FROM finanzdaten WHERE benutzer_id = ?";
+  db.all(sql, [req.session.benutzerId], (err, rows) => {
     if (err) {
-      res.status(500).send("Fehler beim Abrufen der Daten");
+      res.status(500).json({ error: "Fehler beim Abrufen der Daten" });
     } else {
       res.json(rows);
     }
   });
 });
 
-app.delete("/eintrag-loeschen/:id", (req, res) => {
-  const eintragId = req.params.id;
+// ==========================================
+// ROUTE: SPEICHERN
+// ==========================================
+app.post("/speichern", (req, res) => {
+  if (!req.session.benutzerId) {
+    return res.status(401).json({ error: "Bitte zuerst einloggen!" });
+  }
 
-  const sql = "DELETE FROM finanzdaten WHERE id = ?";
+  const { kategorie, betrag } = req.body;
+  const datumHeute = new Date().toISOString().split("T")[0];
+  const sql = "INSERT INTO finanzdaten (benutzer_id, datum, kategorie, betrag) VALUES (?, ?, ?, ?)";
 
-  db.run(sql, [eintragId], function (err) {
+  db.run(sql, [req.session.benutzerId, datumHeute, kategorie, betrag], function (err) {
     if (err) {
-      res.status(500).send("Fehler beim Löschen des Eintrags");
+      res.status(500).json({ error: "Fehler beim Speichern" });
     } else {
-      res.send("Eintrag gelöscht");
+      res.json({ message: "Gespeichert!" }); // Als JSON umgewandelt
     }
   });
 });
 
+// ==========================================
+// ROUTE: LÖSCHEN
+// ==========================================
+app.delete("/eintrag-loeschen/:id", (req, res) => {
+  if (!req.session.benutzerId) {
+    return res.status(401).json({ error: "Bitte zuerst einloggen!" });
+  }
+
+  const { id } = req.params;
+  const sql = "DELETE FROM finanzdaten WHERE id = ? AND benutzer_id = ?";
+
+  db.run(sql, [id, req.session.benutzerId], function (err) {
+    if (err) {
+      res.status(500).json({ error: "Fehler beim Löschen des Eintrags" });
+    } else {
+      res.json({ message: "Eintrag gelöscht" }); // Als JSON umgewandelt
+    }
+  });
+});
+
+// Server starten
 app.listen(3000, () => {
-  console.log("Server läuft auf Port 3000");
+  console.log("Server läuft auf Port 3000 und das Loginsystem ist aktiv!");
 });
