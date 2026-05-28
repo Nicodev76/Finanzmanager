@@ -2,14 +2,16 @@ const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
-const cors = require('cors');
-
-app.use(cors({
-    origin: true, // Erlaubt der Electron-App (egal welches Protokoll) zuzugreifen
-    credentials: true // Erlaubt das Senden und Empfangen von Cookies/Sessions!
-}));
+const cors = require("cors");
 
 const app = express();
+
+app.use(
+  cors({
+    origin: true, // Erlaubt der Electron-App (egal welches Protokoll) zuzugreifen
+    credentials: true, // Erlaubt das Senden und Empfangen von Cookies/Sessions!
+  }),
+);
 
 // 1. Middleware einrichten
 app.use(express.static("Frontend"));
