@@ -92,6 +92,12 @@ function diagrammInitialisieren() {
       },
     },
 
+    legend: {
+      labels: {
+        colors: "#ffffff",
+      },
+    },
+
     //Hab hier ist das sytling vom diagramm.
 
     colors: ["#0074D9", "#2ECC40", "#FF4136"],

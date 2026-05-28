@@ -1,62 +1,60 @@
-.dashboard-container {
-  width: 200px;
-  height: 100vh;
-
-  border: 1px solid rgb(255, 255, 255, 0.2);
-  border-left: none;
-  border-top: none;
-  background-color: rgba(65, 77, 93);
-  backdrop-filter: blur(8px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.57);
-  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.57);
-
+nav {
+  background-color: rgba(65, 77, 93); /* */
+  width: 200px; /* HIER kannst du die Breite jetzt völlig frei ändern! */
+  min-width: 200px; /* Verhindert, dass die Navigation zusammengestaucht wird */
+  border-radius: 15px; /* */
+  display: flex; /* */
+  flex-direction: column; /* */
+  margin: 20px; /* Ein bisschen Abstand zum Rand */
+  align-items: center; /* Zentriert die Links horizontal */
+  gap: 20px; /* Schafft sauberen Abstand zwischen den Links */
 }
 
 nav a {
-  display: block;
-  padding: 25px;
   color: white;
   text-decoration: none;
+  padding: 15px;
+  font-weight: bolder;
   font-size: large;
-  margin: auto;
 }
 
 nav a:hover {
-  background-color: rgba(72, 93, 114);
-  color: white;
-  border-radius: 15px;
-  margin: auto;
-  font-weight: 600;
+  background-color: rgb(56, 70, 85);
+  border-radius: 10px;
 }
 
+/* background-color: rgba(65, 77, 93); */
+
+/* background-color: rgba(255, 255, 255, 0.1); */
+
 .diagramm_div {
-  width: 1800px;
-  height: 1000px;
-  background-color: rgb(36, 48, 62);
-  margin-top: 25px;
+  width: 100%; /* Macht das Diagramm elastisch */
+  max-width: 1200px; /* Verhindert, dass es auf riesigen Bildschirmen zu breit wird */
+  height: 500px; /* Eine feste Höhe ist für ApexCharts super */
+  background-color: rgb(36, 48, 62); /* */
+  margin-top: 25px; /* */
+  border-radius: 15px;
 }
 
 .main {
-  width: 1800px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  /* align-items: center;  <-- Das haben wir gelöscht, damit es links anliegt! */
+  flex: 1; /* Zieht die .main-Box komplett nach links an die Navigation heran */
+  width: 100%; /* Verhindert starre Pixelblockaden */
 }
+
 .übersicht_feld {
-  width: 1500px;
-  height: 400px;
-  margin-top: 25px;
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  height: auto; /* Erlaubt den Boxen, auf kleineren Bildschirmen untereinander zu springen */
+  margin-top: 25px; /* */
+  display: flex; /* */
+  justify-content: space-between; /* */
+  gap: 20px; /* Schafft sauberen Platz zwischen den Einnahmen/Ausgaben-Boxen */
 }
 
 .portfolio_field {
-
   width: 450px;
   margin-right: 25px;
   margin-top: 25px;
@@ -68,24 +66,21 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
-.kategorie_div{
+.kategorie_div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.betrag_div{
+.betrag_div {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-
 }
 
-.portfolio_btns_div{
+.portfolio_btns_div {
   display: flex;
 }
 
@@ -106,13 +101,12 @@ nav a:hover {
   height: 40px;
   font-size: large;
   font-weight: bolder;
-  
+
   border-radius: 10px;
   border: rgb(56, 70, 85) 2px solid;
 
   background-color: rgb(34, 42, 57);
   color: white;
-
 }
 
 .btn {
@@ -143,10 +137,6 @@ nav a:hover {
 }
 
 @media (max-width: 2560px) {
-  .main_dashboard {
-    width: 2360px;
-  }
-  
   .main {
     width: 1910px;
   }
@@ -157,8 +147,6 @@ nav a:hover {
     margin-left: 25px;
     margin-right: 25px;
   }
-
-
 }
 
 @media (width = 1920px) {
@@ -179,8 +167,6 @@ nav a:hover {
 }
 
 @media (max-width: 2000px) {
-  
-
   .diagramm_div {
     width: 1000px;
     height: 500px;
@@ -191,7 +177,6 @@ nav a:hover {
     height: 300px;
     justify-content: center;
     gap: 25px;
-
   }
 }
 
@@ -212,19 +197,61 @@ nav a:hover {
     flex-direction: column;
     align-items: center;
   }
+}
 
-  nav a:hover {
-    background-color: rgba(109, 193, 109, 0.1);
-    color: white;
-    border-radius: 15px;
-    font-weight: 600;
-  }
-  nav{
-    width: 130px;
+@media (max-width: 430px) {
+  nav {
+    width: 430px;
+    height: 100px;
+    margin: 0px;
+    border-radius: 0;
+
+    display: flex;
+    flex-direction: row;
   }
 
-  .dashboard-container {
-    width: 250px;
+  nav a {
+    font-size: x-small;
+    padding: 5px;
   }
-  
+
+  .main_dashboard {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 0px;
+    align-items: normal;
+    justify-content: normal;
+
+    padding: 0px;
+  }
+
+  .main {
+    align-items: normal;
+    justify-content: normal;
+
+    width: 430px;
+
+    margin: 0;
+
+
+  }
+
+  .übersicht_feld {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    justify-content: normal;
+
+    width: 200px;
+
+    gap: 0px;
+    padding: 0px;
+
+
+  }
+
+  .portfolio_field {
+    width: 400px;
+  }
 }
