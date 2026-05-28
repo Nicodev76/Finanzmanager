@@ -3,22 +3,8 @@
   flex: 1; /* Nimm dir automatisch den gesamten restlichen Platz! */
   padding: 20px; /* Ein bisschen Abstand zum Rand */
 }
-.accounts_dashboard {
-  display: none;
-}
 
 .transactions_dashboard {
   display: none;
 }
 
-.budgets_dashboard {
-  display: none;
-}
-
-.reports_dashboard {
-  display: none;
-}
-
-.settings_dashboard {
-  display: none;
-}
