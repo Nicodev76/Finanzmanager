@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    height: 100vh;
+
+    background-color: rgba(11, 12, 16);
+
+    color: white;
+}
