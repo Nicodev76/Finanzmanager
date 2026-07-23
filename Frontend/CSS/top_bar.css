@@ -1,7 +1,8 @@
 .top_bar{
-    width: 100%;
+    width: 360px;
     height: 100px;
 
+    margin-top: 15px;
     margin-left: 10px;
     margin-right: 10px;
 
@@ -9,7 +10,10 @@
     justify-content: space-between;
     align-items: center;
 
-    border-bottom: rgba(255, 255, 255, 0.1) 1px solid;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background-color: rgba(11, 17, 23);
 }
 
 .profil_img{
@@ -22,5 +26,5 @@
 
 .überschrift{
     font-size: 30px;
-    font-weight: bold;
+    font-weight:bolder
 }

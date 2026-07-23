@@ -1,8 +1,12 @@
 .nav_bar{
     
-    width: 100%;
+    width: 360px;
     height: 70px;
 
-    border-top: rgba(255, 255, 255, 0.1) 1px solid;
-    
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background-color: rgba(11, 17, 23);
+
+    margin: 15px;
 }
