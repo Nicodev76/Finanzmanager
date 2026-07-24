@@ -1,12 +1,23 @@
-.nav_bar{
-    
-    width: 360px;
-    height: 70px;
+.nav_bar {
+  width: 340px;
+  height: 65px;
 
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-    background-color: rgba(11, 17, 23);
+  background-color: rgba(11, 17, 23);
 
-    margin: 15px;
+  margin: 15px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+
+  padding: 10px;
+}
+
+.nav_icon :hover {
+  cursor: pointer;
 }

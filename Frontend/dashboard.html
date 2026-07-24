@@ -9,17 +9,21 @@
   </head>
   <body>
     <div class="top_bar">
-      <img class="profil_img" src="/icons/profil.png" alt="" />
-      <div class="überschrift">Überschrift</div>
-      <img src="/icons/Glocke.png" width="50px" alt="" />
+      <div class="menu_icon">
+        <span class="menu_icon_span"></span>
+        <span class="menu_icon_span"></span>
+        <span class="menu_icon_span"></span>
+      </div>
+      <div class="überschrift">Dashboard</div>
+      <img src="/icons/glocke.png" width="50px" alt="" />
     </div>
 
     <div class="main_content">
       <div class="dashboard-diagramm">
         <p class="gesamt_übersicht">Gesamt Übersicht</p>
 
-        <h3>KontoStand</h3>
-        <p>veränderung in prozent und betrag</p>
+        <h3 class ="dashboard_kontostand">0.00 €</h3>
+        <p class="dashboard_kontostand_änderung">0.00 € (0.00 %)</p>
       </div>
 
       <div class="auf_einen_blick">
@@ -27,6 +31,35 @@
       </div>
     </div>
 
-    <div class="nav_bar"></div>
+    <div class="nav_bar">
+      <div class="nav_icon" onclick="nav_home()">
+        <img src="/icons/home.png" alt="" />
+      </div>
+
+      <div class="nav_icon" onclick="nav_analyse()">
+        <img src="/icons/analyse.png" alt="" />
+      </div>
+
+      <div class="nav_icon" onclick="nav_aktien()">
+        <img src="/icons/aktien.png" alt="" />
+      </div>
+
+      <div class="nav_icon" onclick="nav_sparen()">
+        <img src="/icons/sparen.png" alt="" />
+      </div>
+
+      <div class="nav_icon" onclick="nav_reports()">
+        <img src="/icons/reports.png" alt="" />
+      </div>
+
+      <div class="nav_icon" onclick="nav_mehr()">
+        <img src="/icons/mehr.png" alt="" />
+      </div>
+
+    </div>
+
+    <script src="JS/nav.js"></script>
+    <script src="JS/dashboard.js"></script>
+
   </body>
 </html>
