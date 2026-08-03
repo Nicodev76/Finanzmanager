@@ -14,7 +14,7 @@
 
 .dashboard-diagramm {
   width: 330px;
-  height: 340px;
+  height: 390px;
 
   padding: 15px;
   padding-top: 0px;
@@ -27,7 +27,7 @@
 
 .auf_einen_blick {
   width: 330px;
-  height: 200px;
+  height: 150px;
 
   padding: 15px;
   margin-top: 10px;
@@ -36,4 +36,28 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 
   background-color: rgba(11, 17, 23);
+}
+
+.auf_einen_blick_anzeigen_div{
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  
+}
+
+.auf_einen_blick_anzeige{
+  background-color: rgba(17, 23, 30);
+  width: 45%;
+  height: 60%;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  font-size: 12px;
+  font-weight: lighter;
+  
+  padding-left: 10px;
 }

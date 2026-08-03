@@ -53,4 +53,4 @@ function nav_mehr() {
     mehr.style.display ="flex"
 }
 
-nav_home();
+nav_analyse();
