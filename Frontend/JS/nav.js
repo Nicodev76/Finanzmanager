@@ -6,6 +6,7 @@ function nav_main() {
     const reports = document.querySelector(".reports_div");
     const mehr = document.querySelector(".mehr_div");
     const eingabe = document.querySelector(".eingabe_div");
+    const sparenEingabe =document.querySelector(".sparen_eingabe_div");
 
     home.style.display = "none";
     analyse.style.display = "none";
@@ -14,6 +15,7 @@ function nav_main() {
     reports.style.display = "none";
     mehr.style.display = "none";
     eingabe.style.display = "none";
+    sparenEingabe.style.display = "none";
 
     
 }
@@ -61,7 +63,7 @@ function nav_reports() {
 function nav_mehr() {
     nav_main();
 
-    const überschrift =document.querySelector(".überschrift").innerHTML = "Mehr";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Mehr";
 
     const mehr = document.querySelector(".mehr_div");
     mehr.style.display ="flex"
@@ -70,10 +72,19 @@ function nav_mehr() {
 function eingabe_MenueAnzeigen() {
     nav_main();
 
-    const überschrift =document.querySelector(".überschrift").innerHTML = "Eingabe";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Eingabe";
 
-    const mehr = document.querySelector(".eingabe_div");
-    mehr.style.display ="flex"
+    const eingabe = document.querySelector(".eingabe_div");
+    eingabe.style.display = "flex"
 }
 
-nav_home();
+function sparziel_erstellen(){
+    nav_main();
+
+    const überschrift = document.querySelector(".überschrift").innerHTML = "sparziel erstellen";
+
+    const Sparzielersttlen = document.querySelector(".sparen_eingabe_div");
+    Sparzielersttlen.style.display = "flex"
+}
+
+nav_sparen();
