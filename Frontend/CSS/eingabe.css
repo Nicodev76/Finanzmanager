@@ -1,0 +1,49 @@
+.eingabe_div {
+  width: 100%;
+  height: 600px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.einnahme_ausgabe_enscheidung {
+  height: 40px;
+  width: 330px;
+
+  background-color: rgba(11, 17, 23);
+
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.einnahme_p {
+  width: 50%;
+  height: 100%;
+
+  border-radius: 100px;
+
+  background-color: rgba(36, 122, 240);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ausgabe_p {
+  width: 50%;
+  height: 100%;
+
+  border-radius: 100px;
+
+  background-color: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

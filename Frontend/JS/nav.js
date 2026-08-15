@@ -5,6 +5,7 @@ function nav_main() {
     const sparen = document.querySelector(".sparen_div");
     const reports = document.querySelector(".reports_div");
     const mehr = document.querySelector(".mehr_div");
+    const eingabe = document.querySelector(".eingabe_div");
 
     home.style.display = "none";
     analyse.style.display = "none";
@@ -12,6 +13,7 @@ function nav_main() {
     sparen.style.display = "none";
     reports.style.display = "none";
     mehr.style.display = "none";
+    eingabe.style.display = "none";
 
     
 }
@@ -50,6 +52,13 @@ function nav_mehr() {
     nav_main();
 
     const mehr = document.querySelector(".mehr_div");
+    mehr.style.display ="flex"
+}
+
+function eingabe_MenueAnzeigen() {
+    nav_main();
+
+    const mehr = document.querySelector(".eingabe_div");
     mehr.style.display ="flex"
 }
 

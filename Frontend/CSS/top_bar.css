@@ -39,3 +39,8 @@
     font-size: 30px;
     font-weight: bolder;
 }
+
+.menu_icon:hover{
+    cursor: pointer;
+    filter: brightness(1.2);
+}
