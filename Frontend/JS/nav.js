@@ -21,11 +21,15 @@ function nav_main() {
 function nav_home() {
     nav_main();
 
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Dashboard";
+
     const home = document.querySelector(".dashboard_div");
     home.style.display ="flex"
 }
 function nav_analyse() {
     nav_main();
+
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Analyse";
 
     const analyse = document.querySelector(".analyse_div");
     analyse.style.display ="flex"
@@ -33,11 +37,15 @@ function nav_analyse() {
 function nav_aktien() {
     nav_main();
 
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Aktien";
+
     const aktien = document.querySelector(".aktien_div");
     aktien.style.display ="flex"
 }
 function nav_sparen() {
     nav_main();
+
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Sparen";
 
     const sparen = document.querySelector(".sparen_div");
     sparen.style.display ="flex"
@@ -45,11 +53,15 @@ function nav_sparen() {
 function nav_reports() {
     nav_main();
 
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Reports";
+
     const reports = document.querySelector(".reports_div");
     reports.style.display ="flex"
 }
 function nav_mehr() {
     nav_main();
+
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Mehr";
 
     const mehr = document.querySelector(".mehr_div");
     mehr.style.display ="flex"
@@ -58,8 +70,10 @@ function nav_mehr() {
 function eingabe_MenueAnzeigen() {
     nav_main();
 
+    const überschrift =document.querySelector(".überschrift").innerHTML = "Eingabe";
+
     const mehr = document.querySelector(".eingabe_div");
     mehr.style.display ="flex"
 }
 
-nav_analyse();
+nav_home();

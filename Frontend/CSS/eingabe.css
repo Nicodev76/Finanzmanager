@@ -47,3 +47,124 @@
   justify-content: center;
   align-items: center;
 }
+
+.beschriftungs_eingabe {
+  height: 100px;
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.beschriftugs_innput_feld {
+  height: 50px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.kategorie_select_div {
+  height: 200px;
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.kategorie_select {
+  height: 50px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.datum_div {
+  height: 150px;
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.datum_input {
+  height: 50px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  color-scheme: dark;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.eintrag_speichern_btn_div {
+  height:50px;
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.eintrag_speichern_btn {
+  height: 50px;
+
+  background-color: rgba(36, 122, 240);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  color-scheme: dark;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.eintrag_speichern_btn:hover{
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.datum_input{
+  cursor: pointer;
+}
+
+.kategorie_select{
+  cursor: pointer;
+}
+
+.beschriftugs_innput_feld{
+  cursor: pointer;
+}
