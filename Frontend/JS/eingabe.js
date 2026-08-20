@@ -89,5 +89,3 @@ async function EingabeSpeichern() {
 
   document.getElementById("eingabeDatumFeld").value = aktuellesDatum;
 }
-
-(typ, beschreibung, kategorie, datum, betrag, nutzerid / api / finanzdaten);
