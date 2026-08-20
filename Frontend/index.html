@@ -75,8 +75,8 @@
 
       <div class="eingabe_div">
         <div class="einnahme_ausgabe_enscheidung">
-          <p class="einnahme_p">Einnahme</p>
-          <p class="ausgabe_p">Ausgabe</p>
+          <p class="einnahme_p" onclick="einnahmeClick()">Einnahme</p>
+          <p class="ausgabe_p" onclick="ausgabeClick()">Ausgabe</p>
         </div>
 
         <div class="beschriftungs_eingabe">
@@ -85,12 +85,13 @@
             class="beschriftugs_innput_feld"
             type="text"
             placeholder="z.B. Supermarkt"
+            id="eingabeBeschreibungsFeld"
           />
         </div>
 
         <div class="kategorie_select_div">
           <p>Kategorie</p>
-          <select class="kategorie_select" name="kategorie" id="">
+          <select class="kategorie_select" name="kategorie" id="eingabeKategorieFeld">
             <option value="" disabled selected>Bitte wählen...</option>
             <option value="lebensmittel">Lebensmittel</option>
             <option value="wohnen">Wohnen</option>
@@ -101,16 +102,16 @@
 
         <div class="datum_div">
           <p>Datum</p>
-          <input class="datum_input" type="date" />
+          <input class="datum_input" type="date" id="eingabeDatumFeld"/>
         </div>
 
         <div class="betrag_div">
           <p>Betrag</p>
-          <input class="betrag_input" type="number" placeholder="Betrag in €"/>
+          <input class="betrag_input" type="number" placeholder="Betrag in €" id="eingabeBetragFeld"/>
         </div>
 
         <div class="eintrag_speichern_btn_div">
-          <button class="eintrag_speichern_btn">Eintrag Speichern</button>
+          <button class="eintrag_speichern_btn" onclick="EingabeSpeichern()">Eintrag Speichern</button>
         </div>
       </div>
 
@@ -157,7 +158,7 @@
     </div>
 
     <script src="JS/nav.js"></script>
-    <script src="JS/dashboard.js"></script>
+    <script src="JS/eingabe.js"></script>
     <script src="JS/sparen.js"></script>
   </body>
 </html>

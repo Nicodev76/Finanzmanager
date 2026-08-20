@@ -192,3 +192,7 @@
 .kategorie_select {
   cursor: pointer;
 }
+
+.eingabe_div:hover{
+  cursor: pointer;
+}
