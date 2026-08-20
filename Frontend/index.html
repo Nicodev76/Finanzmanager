@@ -65,6 +65,8 @@
           <P>Meine Sparziele</P>
           <div class="menu_icon" onclick="sparziel_erstellen()">+</div>
         </div>
+
+        
       </div>
 
       <div class="reports_div">Kommt noch</div>
@@ -107,7 +109,19 @@
         </div>
       </div>
 
-      <div class="sparen_eingabe_div"></div>
+      <div class="sparen_eingabe_div">
+        <div class="sparen_eingabe_name_div">
+          <p>Name</p>
+          <input type="text" placeholder="gebe einen Namen ein" id="sparenEingabeNameInput">
+        </div>
+
+        <div class="sparen_eingabe_betrag_div">
+          <p>Betrag</p>
+          <input type="number" placeholder="Gebe ein ziel betrag ein in €" id="sparenEingabeBetragInput">
+        </div>
+
+        <button class="sparen_eintrag_button" onclick="sparziel_anzeigen()">Erstellen</button>
+      </div>
 
     </div>
 

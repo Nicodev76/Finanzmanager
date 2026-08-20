@@ -19,3 +19,27 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.sparziel_div {
+  width: 330px;
+  height: 100px;
+
+  background-color: rgba(11, 17, 23);
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  padding: 15px;
+
+}
+
+.sparziel_beschriftungs_div{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+

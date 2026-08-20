@@ -87,4 +87,4 @@ function sparziel_erstellen(){
     Sparzielersttlen.style.display = "flex"
 }
 
-nav_sparen();
+nav_home();
