@@ -127,8 +127,36 @@
   font-weight: bolder;
 }
 
+
+.betrag_div {
+  height: 150px;
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.betrag_input {
+  height: 50px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  color-scheme: dark;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
 .eintrag_speichern_btn_div {
-  height:50px;
+  height: 50px;
   width: 330px;
 
   display: flex;
@@ -152,17 +180,15 @@
   font-weight: bolder;
 }
 
-.eintrag_speichern_btn:hover{
+.eintrag_speichern_btn:hover {
   cursor: pointer;
   filter: brightness(1.1);
 }
 
-.datum_input{
+.datum_input {
   cursor: pointer;
 }
 
-.kategorie_select{
+.kategorie_select {
   cursor: pointer;
 }
-
-
