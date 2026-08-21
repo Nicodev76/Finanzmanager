@@ -41,10 +41,10 @@ const app = express();
 app.use(express.json());
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(path.join(__dirname, "Frontend")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "Index.html"));
+  res.sendFile(path.join(__dirname, "Frontend", "Index.html"));
 });
 
 app.post("/api/finanzdaten", (req, res) => {
