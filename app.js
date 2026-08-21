@@ -47,36 +47,44 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "Index.html"));
 });
 
-app.listen(3000, () => console.log("Server läuft auf Port 3000"));
-
-
 app.post("/api/finanzdaten", (req, res) => {
-  const {typ, beschreibung, kategorie, datum, betrag, nutzerid} = req.body;
+  const { typ, beschreibung, kategorie, datum, betrag, nutzerid } = req.body;
 
-  const sql = "INSERT INTO finanzdaten (typ, beschreibung, kategorie, datum, betrag, nutzerid) VALUES (?,?,?,?,?,?)";
-  
-  db.run(sql, [typ, beschreibung, kategorie, datum, betrag, nutzerid], function (err) {
-    if(err){
-      console.error("Fehler beim speichern", err.message);
-      return res.status(500).json({fehler: "Daten konnten nicht gespeichert werden"});
-    }
+  const sql =
+    "INSERT INTO finanzdaten (typ, beschreibung, kategorie, datum, betrag, nutzerid) VALUES (?,?,?,?,?,?)";
 
-    res.json({
-      meldung: "Daten wurden erfolgreich gespeichert", 
-      id: this.lastID,
-    });
-  });
+  db.run(
+    sql,
+    [typ, beschreibung, kategorie, datum, betrag, nutzerid],
+    function (err) {
+      if (err) {
+        console.error("Fehler beim speichern", err.message);
+        return res
+          .status(500)
+          .json({ fehler: "Daten konnten nicht gespeichert werden" });
+      }
+
+      res.json({
+        meldung: "Daten wurden erfolgreich gespeichert",
+        id: this.lastID,
+      });
+    },
+  );
 });
 
 app.get("/api/finanzdaten", (req, res) => {
   const sql = "SELECT * FROM finanzdaten";
 
   db.all(sql, [], (err, rows) => {
-    if(err){
+    if (err) {
       console.error("fehler beim ausgelessen:", err.message);
-      return res.status(500).json({fehler: "Daten konnten nicht ausgelessen werden"});
+      return res
+        .status(500)
+        .json({ fehler: "Daten konnten nicht ausgelessen werden" });
     }
 
     res.json(rows);
-  })
-})
+  });
+});
+
+app.listen(3000, () => console.log("Server läuft auf Port 3000"));
