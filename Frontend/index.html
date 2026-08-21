@@ -20,7 +20,7 @@
           <p class="gesamt_übersicht">Gesamt Übersicht</p>
 
           <h3 class="dashboard_kontostand" id="dashboardKontostand">0.00 €</h3>
-          <p class="dashboard_kontostand_änderung">0.00 € (0.00 %)</p>
+          <p class="dashboard_kontostand_änderung" id="dashboardKontostandÄnderung">0.00 € (0.00 %)</p>
         </div>
 
         <div class="auf_einen_blick">
@@ -93,10 +93,12 @@
           <p>Kategorie</p>
           <select class="kategorie_select" name="kategorie" id="eingabeKategorieFeld">
             <option value="" disabled selected>Bitte wählen...</option>
+            <option value="Gehalt">Gehalt</option>
             <option value="lebensmittel">Lebensmittel</option>
             <option value="wohnen">Wohnen</option>
             <option value="mobilitaet">Mobilität</option>
-            <option value="freizeit">Freizeit</option>
+            <option value="hobby">Hobby</option>
+            <option value="andere">Andere</option>
           </select>
         </div>
 
