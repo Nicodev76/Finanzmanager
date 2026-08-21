@@ -20,8 +20,13 @@
           <p class="gesamt_übersicht">Gesamt Übersicht</p>
 
           <h3 class="dashboard_kontostand" id="dashboardKontostand">0.00 €</h3>
-          <p class="dashboard_kontostand_änderung" id="dashboardKontostandÄnderung">0.00 € (0.00 %)</p>
-          
+          <p
+            class="dashboard_kontostand_änderung"
+            id="dashboardKontostandÄnderung"
+          >
+            0.00 € (0.00 %)
+          </p>
+
           <div id="dashboradDiagramm"></div>
         </div>
 
@@ -64,11 +69,9 @@
 
       <div class="sparen_div">
         <div class="sparen_top_bar">
-          <P>Meine Sparziele</P>
+          <p>Meine Sparziele</p>
           <div class="menu_icon" onclick="sparziel_erstellen()">+</div>
         </div>
-
-        
       </div>
 
       <div class="reports_div">Kommt noch</div>
@@ -93,7 +96,11 @@
 
         <div class="kategorie_select_div">
           <p>Kategorie</p>
-          <select class="kategorie_select" name="kategorie" id="eingabeKategorieFeld">
+          <select
+            class="kategorie_select"
+            name="kategorie"
+            id="eingabeKategorieFeld"
+          >
             <option value="" disabled selected>Bitte wählen...</option>
             <option value="Gehalt">Gehalt</option>
             <option value="lebensmittel">Lebensmittel</option>
@@ -106,33 +113,55 @@
 
         <div class="datum_div">
           <p>Datum</p>
-          <input class="datum_input" type="date" id="eingabeDatumFeld"/>
+          <input class="datum_input" type="date" id="eingabeDatumFeld" />
         </div>
 
         <div class="betrag_div">
           <p>Betrag</p>
-          <input class="betrag_input" type="number" placeholder="Betrag in €" id="eingabeBetragFeld"/>
+          <input
+            class="betrag_input"
+            type="number"
+            placeholder="Betrag in €"
+            id="eingabeBetragFeld"
+          />
         </div>
 
         <div class="eintrag_speichern_btn_div">
-          <button class="eintrag_speichern_btn" onclick="EingabeSpeichern()">Eintrag Speichern</button>
+          <button class="eintrag_speichern_btn" onclick="EingabeSpeichern()">
+            Eintrag Speichern
+          </button>
         </div>
       </div>
 
       <div class="sparen_eingabe_div">
         <div class="sparen_eingabe_name_div">
           <p>Name</p>
-          <input type="text" placeholder="gebe einen Namen ein" id="sparenEingabeNameInput">
+          <input
+            type="text"
+            placeholder="gebe einen Namen ein"
+            id="sparenEingabeNameInput"
+          />
         </div>
 
         <div class="sparen_eingabe_betrag_div">
           <p>Betrag</p>
-          <input type="number" placeholder="Gebe ein ziel betrag ein in €" id="sparenEingabeBetragInput">
+          <input
+            type="number"
+            placeholder="Gebe ein ziel betrag ein in €"
+            id="sparenEingabeBetragInput"
+          />
         </div>
 
-        <button class="sparen_eintrag_button" onclick="sparziel_anzeigen()">Erstellen</button>
+        <button
+          class="sparen_eintrag_button"
+          onclick="
+            sparziel_anzeigen();
+            datenLaden();
+          "
+        >
+          Erstellen
+        </button>
       </div>
-
     </div>
 
     <div class="nav_bar">
