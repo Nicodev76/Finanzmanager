@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  height: 100vh;
+
+  background-color: rgba(11, 12, 16);
+
+  color: white;
+}
+
+input {
+  height: 30px;
+  width: 200px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+button {
+  height: 50px;
+  width: 200px;
+
+  margin-top: 30px;
+
+  background-color: rgba(36, 122, 240);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  color-scheme: dark;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
