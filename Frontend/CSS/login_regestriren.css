@@ -48,3 +48,9 @@ button {
   font-size: 15px;
   font-weight: bolder;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
+}
