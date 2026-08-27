@@ -6,8 +6,16 @@ async function dashboardChartLaden() {
   let ausgabenmonat = 0;
   let einnahmenmonat = 0;
 
+  const nutzerid = localStorage.getItem("userId");
 
-  const response = await fetch("/api/finanzdaten");
+  if (!nutzerid) {
+    console.error("Keine Nutzer-ID gefunden. Bitte einloggen.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const response = await fetch(`/api/finanzdaten?nutzerid=${nutzerid}`);
+
   const alleDaten = await response.json();
 
   const lezteTage = [];
@@ -54,33 +62,32 @@ async function dashboardChartLaden() {
 
   let i = 0;
   gesamtdataz.forEach((daten) => {
-    if(i === 0){
+    if (i === 0) {
       gesamtdata[i] = daten;
-    }
-    else if (i > 0){
-      let d = i - 1
+    } else if (i > 0) {
+      let d = i - 1;
       gesamtdata[i] = daten + gesamtdata[d];
     }
 
     i++;
-  })
+  });
 
-  
   einnahmendata.forEach((daten) => {
     einnahmenmonat += daten;
-  })
+  });
 
-  
   ausgabendata.forEach((daten) => {
     ausgabenmonat += daten;
-  })
+  });
 
-  let gesamtmonat = einnahmenmonat - ausgabenmonat
+  let gesamtmonat = einnahmenmonat - ausgabenmonat;
 
   console.log(lezteTage);
 
-  document.getElementById("dashboardKontostandÄnderung").innerHTML = gesamtmonat + "€  " + "(0.00 %)"; //Wird noch ersezt durch den bergleich zum vormonat 
-  document.getElementById("dashboardMonatlicheAusgaben").innerHTML = ausgabenmonat;
+  document.getElementById("dashboardKontostandÄnderung").innerHTML =
+    gesamtmonat + "€  " + "(0.00 %)"; //Wird noch ersezt durch den bergleich zum vormonat
+  document.getElementById("dashboardMonatlicheAusgaben").innerHTML =
+    ausgabenmonat;
 
   let datums = lezteTage.reverse();
 

@@ -96,9 +96,17 @@ app.post("/api/finanzdaten", (req, res) => {
 });
 
 app.get("/api/finanzdaten", (req, res) => {
-  const sql = "SELECT * FROM finanzdaten";
+  const nutzerid = req.query.nutzerid;
 
-  db.all(sql, [], (err, rows) => {
+  if (!nutzerid) {
+    return res.status(400).json({
+      fehler: "keine Nutzer ID angegeben",
+    });
+  }
+
+  const sql = "SELECT * FROM finanzdaten WHERE nutzerid = ?";
+
+  db.all(sql, [nutzerid], (err, rows) => {
     if (err) {
       console.error("fehler beim ausgelessen:", err.message);
       return res

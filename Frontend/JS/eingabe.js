@@ -28,6 +28,15 @@ function ausgabeClick() {
 }
 
 async function EingabeSpeichern() {
+
+  const nutzerid = localStorage.getItem("userId");
+
+  if (!nutzerid) {
+    alert("Du bist nicht eingeloggt!");
+    window.location.href = "login.html"
+    return;
+  }
+
   const typWert = entscheidung;
   const beschreibungWert = document.getElementById(
     "eingabeBeschreibungsFeld",
@@ -35,7 +44,7 @@ async function EingabeSpeichern() {
   const kategorieWert = document.getElementById("eingabeKategorieFeld").value;
   const datumWert = document.getElementById("eingabeDatumFeld").value;
   const betragWert = document.getElementById("eingabeBetragFeld").value;
-  const nutzeridWert = 1;
+  const nutzeridWert = nutzerid;
 
   console.log(
     typWert,
@@ -54,6 +63,7 @@ async function EingabeSpeichern() {
     betrag: betragWert,
     nutzerid: nutzeridWert,
   };
+
 
   try {
     const response = await fetch("/api/finanzdaten", {
