@@ -65,7 +65,7 @@ const bcrypt = require("bcryptjs");
 app.use(express.static(path.join(__dirname, "Frontend")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "Frontend", "Index.html"));
+  res.sendFile(path.join(__dirname, "Frontend", "login.html"));
 });
 
 //finazdaten
