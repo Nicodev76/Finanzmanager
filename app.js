@@ -13,6 +13,26 @@ const db = new sqlite3.Database("./Datenbank.db", (err) => {
 
 db.serialize(() => {
   db.run(
+    `CREATE TABLE IF NOT EXISTS user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    email TEXT UNIQUE
+  )`,
+
+    (err) => {
+      if (err) {
+        console.error(
+          "Es ist ein Fehler bei der erstellung der user Tabbelle aufgetreten",
+          err.message,
+        );
+      } else {
+        console.log("Die user Tabbele wurde erfolgreich erstellt");
+      }
+    },
+  );
+
+  db.run(
     `CREATE TABLE IF NOT EXISTS finanzdaten (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     typ TEXT NOT NULL,
@@ -40,12 +60,15 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const path = require("path");
+const bcrypt = require("bcryptjs");
 
 app.use(express.static(path.join(__dirname, "Frontend")));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "Frontend", "Index.html"));
 });
+
+//finazdaten
 
 app.post("/api/finanzdaten", (req, res) => {
   const { typ, beschreibung, kategorie, datum, betrag, nutzerid } = req.body;
@@ -84,6 +107,74 @@ app.get("/api/finanzdaten", (req, res) => {
     }
 
     res.json(rows);
+  });
+});
+
+//user daten
+
+app.post("/api/user", async (req, res) => {
+  const { username, password, email } = req.body;
+
+  try {
+    const hasheadPasswort = await bcrypt.hash(password, 10);
+
+    const sql = "INSERT INTO user (username, password, email) VALUES (?,?,?)";
+
+    db.run(sql, [username, hasheadPasswort, email], function (err) {
+      if (err) {
+        if (err.message.includes("UNIQUE constraint failed")) {
+          return res.status(400).json({
+            fehler: "Dieser Benutzername ist leider schon vergeben!",
+          });
+        }
+
+        console.error("Fehler beim speichern des Users:", err.message);
+        return res
+          .status(500)
+          .json({ fehler: "Benutzer konnte nicht gespeichert werden" });
+      }
+
+      res.json({
+        meldung: "Benutzer erfolgreich gespeichert",
+        id: this.lastID,
+      });
+    });
+  } catch (error) {
+    console.error("Fehler beim HAshen", error);
+    res.status(500).json({
+      fehler: "Interner Serverfehler",
+    });
+  }
+});
+
+app.post("/api/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const sql = "SELECT * FROM user WHERE username = ?";
+
+  db.get(sql, [username], async (err, row) => {
+    if (err) {
+      console.error("Fehler beim LOgin:", err.message);
+      return res
+        .status(500)
+        .json({ fehler: "Ein Serverfehler ist aufgetreten" });
+    }
+
+    if (!row) {
+      return res.status(400).json({ fehler: "Benutzer nicht gefunden" });
+    }
+
+    const passwortKorrekt = await bcrypt.compare(password, row.password);
+
+    if (!passwortKorrekt) {
+      return res.status(400).json({ fehler: "Falsches password" });
+    }
+
+    res.json({
+      meldung: "Erfolgreich eingeloggt!",
+      userId: row.id,
+      username: row.username,
+    });
   });
 });
 
