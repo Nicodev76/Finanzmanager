@@ -214,7 +214,7 @@ app.post("/api/sparen", (req, res) => {
   const { nutzerid, name, zielbetrag, eingezahlterbetrag } = req.body;
 
   const sql =
-    "INSERT INTO finanzdaten (nutzerid, name, zielbetrag, eingezahlterbetrag) VALUES (?,?,?,?,?,?)";
+    "INSERT INTO sparen (nutzerid, name, zielbetrag, eingezahlterbetrag) VALUES (?,?,?,?)";
 
   db.run(sql, [nutzerid, name, zielbetrag, eingezahlterbetrag], function (err) {
     if (err) {
@@ -241,7 +241,7 @@ app.get("/api/sparen", (req, res) => {
     });
   }
 
-  const sql = "SELECT * FROM finanzdaten WHERE nutzerid = ?";
+  const sql = "SELECT * FROM sparen WHERE nutzerid = ?";
 
   db.all(sql, [nutzerid], (err, rows) => {
     if (err) {
