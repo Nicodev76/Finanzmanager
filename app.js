@@ -54,6 +54,29 @@ db.serialize(() => {
       }
     },
   );
+
+  db.run(
+    `CREATE TABLE IF NOT EXISTS sparen (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nutzerid INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    zielbetrag INTEGER NOT NULL,
+    eingezahlterbetrag INTEGER NOT NULL
+
+  )`,
+
+    (err) => {
+      if (err) {
+        console.error(
+          "Es ist ein Fehler bei der erstellung der Spar Tabbelle aufgetreten",
+          err.message,
+        );
+      } else {
+        console.log("Die Spar Tabbele wurde erfolgreich erstellt");
+      }
+    },
+  );
+
 });
 
 const express = require("express");
