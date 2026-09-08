@@ -76,7 +76,6 @@ db.serialize(() => {
       }
     },
   );
-
 });
 
 const express = require("express");
@@ -206,6 +205,53 @@ app.post("/api/login", async (req, res) => {
       userId: row.id,
       username: row.username,
     });
+  });
+});
+
+//spar daten 
+
+app.post("/api/sparen", (req, res) => {
+  const { nutzerid, name, zielbetrag, eingezahlterbetrag } = req.body;
+
+  const sql =
+    "INSERT INTO finanzdaten (nutzerid, name, zielbetrag, eingezahlterbetrag) VALUES (?,?,?,?,?,?)";
+
+  db.run(sql, [nutzerid, name, zielbetrag, eingezahlterbetrag], function (err) {
+    if (err) {
+      console.error("Fehler beim speichern der Spar daten", err.message);
+      return res
+        .status(500)
+        .json({ fehler: "Spar Daten konnten nicht gespeichert werden" });
+    }
+
+    res.json({
+      meldung: "Spar Daten wurden erfolgreich gespeichert",
+      id: this.lastID,
+    });
+  });
+});
+
+
+app.get("/api/sparen", (req, res) => {
+  const nutzerid = req.query.nutzerid;
+
+  if (!nutzerid) {
+    return res.status(400).json({
+      fehler: "keine Nutzer ID angegeben",
+    });
+  }
+
+  const sql = "SELECT * FROM finanzdaten WHERE nutzerid = ?";
+
+  db.all(sql, [nutzerid], (err, rows) => {
+    if (err) {
+      console.error("fehler beim ausgelessen der spar daten:", err.message);
+      return res
+        .status(500)
+        .json({ fehler: "Spar Daten konnten nicht ausgelessen werden" });
+    }
+
+    res.json(rows);
   });
 });
 
