@@ -34,9 +34,9 @@ async function dashboardChartLaden() {
         let d = 29 - i;
 
         if (daten.datum === lezteTage[i]) {
-          einnahmendata[d] += daten.betrag;
+          einnahmendata[d] += Math.round(daten.betrag * 100) / 100;
 
-          gesamtdataz[d] += daten.betrag;
+          gesamtdataz[d] += Math.round(daten.betrag * 100) / 100;
 
           i = 30;
         } else {
@@ -48,9 +48,9 @@ async function dashboardChartLaden() {
         let d = 29 - i;
 
         if (daten.datum === lezteTage[i]) {
-          ausgabendata[d] += daten.betrag;
+          ausgabendata[d] += Math.round(daten.betrag * 100) / 100;
 
-          gesamtdataz[d] -= daten.betrag;
+          gesamtdataz[d] -= Math.round(daten.betrag * 100) / 100;
 
           i = 30;
         } else {
@@ -63,24 +63,24 @@ async function dashboardChartLaden() {
   let i = 0;
   gesamtdataz.forEach((daten) => {
     if (i === 0) {
-      gesamtdata[i] = daten;
+      gesamtdata[i] = Math.round(daten * 100) / 100;
     } else if (i > 0) {
       let d = i - 1;
-      gesamtdata[i] = daten + gesamtdata[d];
+      gesamtdata[i] = Math.round((daten + gesamtdata[d]) * 100) / 100;
     }
 
     i++;
   });
 
   einnahmendata.forEach((daten) => {
-    einnahmenmonat += daten;
+    einnahmenmonat += Math.round(daten * 100) / 100;
   });
 
   ausgabendata.forEach((daten) => {
-    ausgabenmonat += daten;
+    ausgabenmonat += Math.round(daten * 100) / 100;
   });
 
-  let gesamtmonat = einnahmenmonat - ausgabenmonat;
+  let gesamtmonat = Math.round((einnahmenmonat - ausgabenmonat) * 100) / 100;
 
   console.log(lezteTage);
 

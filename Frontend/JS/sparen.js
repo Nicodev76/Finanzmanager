@@ -20,7 +20,7 @@ async function sparziel_anzeigen() {
       "<div class='sparziel_div'><p>" +
       eintrag.name +
       "</p><div><div class='sparziel_beschriftungs_div'><p>" +
-      eintrag.eingezahlterbetrag +
+      Math.round(eintrag.eingezahlterbetrag * 100) / 100 +
       "/" +
       eintrag.zielbetrag +
       "€</p><p>0%</p></div><div>Fortschrits Balken</div></div></div>";

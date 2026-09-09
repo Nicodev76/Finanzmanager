@@ -16,13 +16,13 @@ async function datenLaden() {
 
   alleDaten.forEach((eintrag) => {
     if (eintrag.typ === "e") {
-      summeEinnahmen += eintrag.betrag;
+      summeEinnahmen += Math.round(eintrag.betrag * 100) /100; 
     } else if (eintrag.typ === "a") {
-      summeAusgaben += eintrag.betrag;
+      summeAusgaben += Math.round(eintrag.betrag * 100) /100;
     }
   });
 
-  const gesamtBetrag = summeEinnahmen - summeAusgaben;
+  const gesamtBetrag = Math.round(summeEinnahmen * 100 - summeAusgaben * 100) / 100;
 
   console.log("gesamt: ", gesamtBetrag);
   console.log("einnahmen: ", summeEinnahmen);
