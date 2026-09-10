@@ -85,9 +85,9 @@ async function dashboardChartLaden() {
   console.log(lezteTage);
 
   document.getElementById("dashboardKontostandÄnderung").innerHTML =
-    gesamtmonat + "€  " + "(0.00 %)"; //Wird noch ersezt durch den bergleich zum vormonat
+    gesamtmonat + "€  " + "(0.00 %)"; //Wird noch ersezt durch den vergleich zum vormonat
   document.getElementById("dashboardMonatlicheAusgaben").innerHTML =
-    ausgabenmonat;
+    Math.round(ausgabenmonat * 100) / 100 + "€";
 
   let datums = lezteTage.reverse();
 
