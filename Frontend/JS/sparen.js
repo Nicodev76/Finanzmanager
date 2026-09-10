@@ -16,6 +16,9 @@ async function sparziel_anzeigen() {
 
   alleDaten.forEach((eintrag) => {
     const div = document.querySelector(".sparen_div");
+
+    const prozentbetrag = Math.round((eintrag.eingezahlterbetrag / eintrag.zielbetrag) * 100) / 100;
+
     div.innerHTML +=
       "<div class='sparziel_div'><p>" +
       eintrag.name +
@@ -23,7 +26,7 @@ async function sparziel_anzeigen() {
       Math.round(eintrag.eingezahlterbetrag * 100) / 100 +
       "/" +
       eintrag.zielbetrag +
-      "€</p><p>0%</p></div><div>Fortschrits Balken</div></div></div>";
+      "€</p><p>" +  prozentbetrag * 100 +"%</p></div><div>Fortschrits Balken</div></div></div>";
   });
 }
 

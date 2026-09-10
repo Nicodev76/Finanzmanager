@@ -23,7 +23,7 @@ function nav_main() {
 function nav_home() {
     nav_main();
 
-    const überschrift =document.querySelector(".überschrift").innerHTML = "Dashboard";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Dashboard";
 
     const home = document.querySelector(".dashboard_div");
     home.style.display ="flex"
@@ -31,7 +31,7 @@ function nav_home() {
 function nav_analyse() {
     nav_main();
 
-    const überschrift =document.querySelector(".überschrift").innerHTML = "Analyse";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Analyse";
 
     const analyse = document.querySelector(".analyse_div");
     analyse.style.display ="flex"
@@ -47,7 +47,7 @@ function nav_aktien() {
 function nav_sparen() {
     nav_main();
 
-    const überschrift =document.querySelector(".überschrift").innerHTML = "Sparen";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Sparen";
 
     const sparen = document.querySelector(".sparen_div");
     sparen.style.display ="flex"
@@ -55,7 +55,7 @@ function nav_sparen() {
 function nav_reports() {
     nav_main();
 
-    const überschrift =document.querySelector(".überschrift").innerHTML = "Reports";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Reports";
 
     const reports = document.querySelector(".reports_div");
     reports.style.display ="flex"
@@ -87,4 +87,4 @@ function sparziel_erstellen(){
     Sparzielersttlen.style.display = "flex"
 }
 
-nav_home();
+nav_main();
