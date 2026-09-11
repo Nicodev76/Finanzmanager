@@ -76,6 +76,32 @@ db.serialize(() => {
       }
     },
   );
+
+  db.run(
+    `CREATE TABLE IF NOT EXISTS sparentransaktion (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nutzerid INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    typ TEXT NOT NULL,
+    betrag INTEGER NOT NULL,
+    datum TEXT NOT NULL,
+    internid INTEGER NOT NULL
+    
+
+  )`,
+
+    (err) => {
+      if (err) {
+        console.error(
+          "Es ist ein Fehler bei der erstellung der SparTransaktionsliste Tabbelle aufgetreten",
+          err.message,
+        );
+      } else {
+        console.log("Die SparTransaktionsliste Tabbele wurde erfolgreich erstellt");
+      }
+    },
+  );
+
 });
 
 const express = require("express");
@@ -254,5 +280,54 @@ app.get("/api/sparen", (req, res) => {
     res.json(rows);
   });
 });
+
+
+//spartrasaktionsliste
+
+app.post("/api/sparentransaktion", (req, res) => {
+  const { internid, datum, betrag, typ, name, nutzerid } = req.body;
+
+  const sql =
+    "INSERT INTO sparentransaktion (internid, datum, betrag, typ, name, nutzerid) VALUES (?,?,?,?,?,?)";
+
+  db.run(sql, [internid, datum, betrag, typ, name, nutzerid], function (err) {
+    if (err) {
+      console.error("Fehler beim speichern der Spartrasaktions daten", err.message);
+      return res
+        .status(500)
+        .json({ fehler: "Spartrasaktions Daten konnten nicht gespeichert werden" });
+    }
+
+    res.json({
+      meldung: "Spartrasaktions Daten wurden erfolgreich gespeichert",
+      id: this.lastID,
+    });
+  });
+});
+
+
+app.get("/api/sparentransaktion", (req, res) => {
+  const nutzerid = req.query.nutzerid;
+
+  if (!nutzerid) {
+    return res.status(400).json({
+      fehler: "keine Nutzer ID angegeben",
+    });
+  }
+
+  const sql = "SELECT * FROM sparentransaktion WHERE nutzerid = ?";
+
+  db.all(sql, [nutzerid], (err, rows) => {
+    if (err) {
+      console.error("fehler beim ausgelessen der spartrasaktions daten:", err.message);
+      return res
+        .status(500)
+        .json({ fehler: "Spartrasaktions Daten konnten nicht ausgelessen werden" });
+    }
+
+    res.json(rows);
+  });
+});
+
 
 app.listen(3000, () => console.log("Server läuft auf Port 3000"));
