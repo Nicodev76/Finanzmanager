@@ -1,5 +1,5 @@
 async function sparziel_anzeigen() {
-  const leeren = document.querySelector(".sparen_div");
+  const leeren = document.querySelector(".sparziel_anzeige");
   leeren.innerHTML = "";
 
   const nutzerid = localStorage.getItem("userId");
@@ -15,7 +15,7 @@ async function sparziel_anzeigen() {
   const alleDaten = await response.json();
 
   alleDaten.forEach((eintrag) => {
-    const div = document.querySelector(".sparen_div");
+    const div = document.querySelector(".sparziel_anzeige");
 
     const prozentbetrag = Math.round((eintrag.eingezahlterbetrag / eintrag.zielbetrag) * 100) / 100;
 

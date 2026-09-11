@@ -32,14 +32,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   padding: 15px;
-
 }
 
-.sparziel_beschriftungs_div{
- display: flex;
- flex-direction: row;
- justify-content: space-between;
+.sparziel_beschriftungs_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
+.sparziel_anzeige {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 15px;
+  padding: 15px;
+}
