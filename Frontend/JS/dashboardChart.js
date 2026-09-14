@@ -129,6 +129,7 @@ async function dashboardChartLaden() {
     colors: ["#00E396", "#FF4560", "#008FFB"],
   };
 
+  document.querySelector("#dashboradDiagramm").innerHTML = "";
   let chart = new ApexCharts(
     document.querySelector("#dashboradDiagramm"),
     options,
