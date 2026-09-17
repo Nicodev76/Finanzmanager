@@ -17,7 +17,8 @@ async function sparziel_anzeigen() {
   alleDaten.forEach((eintrag) => {
     const div = document.querySelector(".sparziel_anzeige");
 
-    const prozentbetrag = Math.round((eintrag.eingezahlterbetrag / eintrag.zielbetrag) * 100) / 100;
+    const prozentbetrag =
+      Math.round((eintrag.eingezahlterbetrag / eintrag.zielbetrag) * 100) / 100;
 
     div.innerHTML +=
       "<div class='sparziel_div'><p>" +
@@ -26,7 +27,9 @@ async function sparziel_anzeigen() {
       Math.round(eintrag.eingezahlterbetrag * 100) / 100 +
       "/" +
       eintrag.zielbetrag +
-      "€</p><p>" +  prozentbetrag * 100 +"%</p></div><div>Fortschrits Balken</div></div></div>";
+      "€</p><p>" +
+      prozentbetrag * 100 +
+      "%</p></div><div>Fortschrits Balken</div></div></div>";
   });
 }
 
@@ -72,6 +75,33 @@ async function spazielerstellen() {
   }
 
   sparziel_anzeigen();
+}
+
+let erstellen;
+let eintrag;
+
+function sparzielEnscheidungAnzeigeElmenteLaden() {
+  eintrag = document.querySelector(".erstellenspar");
+  erstellen = document.querySelector(".eintragspar");
+}
+let entscheidungEintragErstellen = "erstellen";
+
+function spareintragClickenscheidung() {
+  sparzielEnscheidungAnzeigeElmenteLaden();
+
+  erstellen.style.backgroundColor = "rgba(36, 122, 240)";
+  eintrag.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
+
+  entscheidungEintragErstellen = "erstellen";
+}
+
+function sparerstellenClickenscheidung() {
+  sparzielEnscheidungAnzeigeElmenteLaden();
+
+  eintrag.style.backgroundColor = "rgba(36, 122, 240)";
+  erstellen.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
+
+  entscheidungEintragErstellen = "eintrag";
 }
 
 sparziel_anzeigen();

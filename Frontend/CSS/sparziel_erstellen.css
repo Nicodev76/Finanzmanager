@@ -83,10 +83,43 @@
   font-weight: bolder;
 }
 
-.sparen_eintrag_button:hover{
+.sparen_eintrag_button:hover {
   cursor: pointer;
   filter: brightness(1.1);
 }
 
+.erstellenspar {
+  width: 50%;
+  height: 100%;
 
+  border-radius: 100px;
 
+  background-color: rgba(36, 122, 240);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eintragspar {
+  width: 50%;
+  height: 100%;
+
+  border-radius: 100px;
+
+  background-color: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.erstellenspar:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.eintragspar:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
