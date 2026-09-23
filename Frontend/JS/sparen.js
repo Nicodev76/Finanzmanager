@@ -86,7 +86,7 @@ function sparzielEnscheidungAnzeigeElmenteLaden() {
 }
 let entscheidungEintragErstellen = "erstellen";
 
-function spareintragClickenscheidung() {
+async function spareintragClickenscheidung() {
   sparzielEnscheidungAnzeigeElmenteLaden();
 
   eintrag.style.backgroundColor = "rgba(36, 122, 240)";
@@ -94,10 +94,58 @@ function spareintragClickenscheidung() {
 
   entscheidungEintragErstellen = "eintrag";
 
-  
+  let buttenname = document.querySelector(".sparen_eintrag_button");
+
+  buttenname.textContent = "Eintragen";
+
+  const sparzielselect = document.querySelector(
+    ".sparenEintagSparzielAuswahlFeld",
+  );
+
+  const nutzerid = localStorage.getItem("userId");
+
+  if (!nutzerid) {
+    alert("Du bist nicht eingeloggt!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const response = await fetch(`/api/sparen?nutzerid=${nutzerid}`);
+
+  const alleDaten = await response.json();
+
+  sparzielselect.innerHTML = ""; //enferne alle optionenn das sie nicht doppelt angezeigt werden
+
+  alleDaten.forEach((eintrag) => {
+    sparzielselect.innerHTML +=
+      "<option value='" + eintrag.id + "'>" + eintrag.name + "</option>";
+  });
+
+  const sparzselect = document.querySelector(
+    ".sparenEintagSparzielAuswahlFeld",
+  );
+  const einnhamausgabenfeld = document.querySelector(
+    ".einnahme_ausgabe_enscheidung_sparen_eintrag",
+  );
+  const datumfeld = document.querySelector(".datum_div_sparen_eintrag");
+
+  sparzselect.classList.remove("verstecken");
+  einnhamausgabenfeld.style.display = "flex";
+  datumfeld.style.display = "flex";
+
+  const heute = new Date();
+
+  const jahr = heute.getFullYear();
+  const monat = String(heute.getMonth() + 1).padStart(2, "0");
+  const tag = String(heute.getDate()).padStart(2, "0");
+
+  const aktuellesDatum = `${jahr}-${monat}-${tag}`;
+
+  document.getElementById("eingabeDatumFeldSparenEintrag").value =
+    aktuellesDatum;
 }
 
-function sparerstellenClickenscheidung() {
+async function sparerstellenClickenscheidung() {
   sparzielEnscheidungAnzeigeElmenteLaden();
 
   erstellen.style.backgroundColor = "rgba(36, 122, 240)";
@@ -105,7 +153,59 @@ function sparerstellenClickenscheidung() {
 
   entscheidungEintragErstellen = "erstellen";
 
-  alert("erstellen");
+  let buttenname = document.querySelector(".sparen_eintrag_button");
+
+  buttenname.textContent = "Erstellen";
+
+  const sparzselect = document.querySelector(
+    ".sparenEintagSparzielAuswahlFeld",
+  );
+  const einnhamausgabenfeld = document.querySelector(
+    ".einnahme_ausgabe_enscheidung_sparen_eintrag",
+  );
+  const datumfeld = document.querySelector(".datum_div_sparen_eintrag");
+
+  sparzselect.classList.add("verstecken");
+  einnhamausgabenfeld.style.display = "none";
+  datumfeld.style.display = "none";
 }
+
+let enscheidungEinnahmeAusgabe = "einnahme";
+
+let Einnahmefeld;
+let Ausgabefeld;
+
+function sparenEinnahmeAusgabeElmenteLaden() {
+  Einnahmefeld = document.querySelector(".EinnahmeSparen");
+  Ausgabefeld = document.querySelector(".AusgabeSparen");
+}
+
+function sparenEinnahmeClickEnscheidung() {
+  sparenEinnahmeAusgabeElmenteLaden();
+
+  Einnahmefeld.style.backgroundColor = "rgba(36, 122, 240)";
+  Ausgabefeld.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
+
+  enscheidungEinnahmeAusgabe = "einnahme";
+}
+
+function sparenAusgabeClickEnscheidung() {
+  sparenEinnahmeAusgabeElmenteLaden();
+
+  Ausgabefeld.style.backgroundColor = "rgba(36, 122, 240)";
+  Einnahmefeld.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
+
+  enscheidungEinnahmeAusgabe = "ausgabe";
+}
+
+const sparzselect = document.querySelector(".sparenEintagSparzielAuswahlFeld");
+const einnhamausgabenfeld = document.querySelector(
+  ".einnahme_ausgabe_enscheidung_sparen_eintrag",
+);
+const datumfeld = document.querySelector(".datum_div_sparen_eintrag");
+
+sparzselect.classList.add("verstecken");
+einnhamausgabenfeld.style.display = "none";
+datumfeld.style.display = "none";
 
 sparziel_anzeigen();

@@ -123,3 +123,100 @@
   cursor: pointer;
   filter: brightness(1.1);
 }
+
+.EinnahmeSparen {
+  width: 50%;
+  height: 100%;
+
+  border-radius: 100px;
+
+  background-color: rgba(36, 122, 240);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AusgabeSparen {
+  width: 50%;
+  height: 100%;
+
+  border-radius: 100px;
+
+  background-color: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EinnahmeSparen:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.AusgabeSparen:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.sparenEintagSparzielAuswahlFeld {
+  height: 50px;
+  width: 330px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.verstecken {
+  display: none;
+}
+
+.einnahme_ausgabe_enscheidung_sparen_eintrag {
+  height: 40px;
+  width: 330px;
+
+  background-color: rgba(11, 17, 23);
+
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datum_div_sparen_eintrag {
+  height: 150px;
+  width: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.datum_input_sparen_eintrag {
+  height: 50px;
+
+  background-color: rgba(11, 17, 23);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: rgb(255, 255, 255);
+  color-scheme: dark;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bolder;
+}

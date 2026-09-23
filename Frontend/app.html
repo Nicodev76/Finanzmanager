@@ -135,12 +135,14 @@
         </div>
       </div>
 
-
       <div class="sparen_eingabe_div">
-
         <div class="einnahme_ausgabe_enscheidung">
-          <p class="erstellenspar" onclick="sparerstellenClickenscheidung()">Erstellen</p>
-          <p class="eintragspar" onclick="spareintragClickenscheidung()">Eintrag</p>
+          <p class="erstellenspar" onclick="sparerstellenClickenscheidung()">
+            Erstellen
+          </p>
+          <p class="eintragspar" onclick="spareintragClickenscheidung()">
+            Eintrag
+          </p>
         </div>
 
         <div class="sparen_eingabe_name_div">
@@ -159,6 +161,27 @@
             placeholder="Gebe ein ziel betrag ein in €"
             id="sparenEingabeBetragInput"
           />
+        </div>
+
+        <div class="einnahme_ausgabe_enscheidung_sparen_eintrag">
+          <p class="EinnahmeSparen" onclick="sparenEinnahmeClickEnscheidung()">
+            Einnahme
+          </p>
+          <p class="AusgabeSparen" onclick="sparenAusgabeClickEnscheidung()">
+            Ausgabe
+          </p>
+        </div>
+
+        <div>
+          <select name="sparenEintagSparzielAuswahlFeld" id="" class="sparenEintagSparzielAuswahlFeld">
+            
+          </select>
+
+        </div>
+
+        <div class="datum_div_sparen_eintrag">
+          <p>Datum</p>
+          <input class="datum_input_sparen_eintrag" type="date" id="eingabeDatumFeldSparenEintrag" />
         </div>
 
         <button
