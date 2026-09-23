@@ -81,27 +81,31 @@ let erstellen;
 let eintrag;
 
 function sparzielEnscheidungAnzeigeElmenteLaden() {
-  eintrag = document.querySelector(".erstellenspar");
-  erstellen = document.querySelector(".eintragspar");
+  erstellen = document.querySelector(".erstellenspar");
+  eintrag = document.querySelector(".eintragspar");
 }
 let entscheidungEintragErstellen = "erstellen";
 
 function spareintragClickenscheidung() {
   sparzielEnscheidungAnzeigeElmenteLaden();
 
-  erstellen.style.backgroundColor = "rgba(36, 122, 240)";
-  eintrag.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
+  eintrag.style.backgroundColor = "rgba(36, 122, 240)";
+  erstellen.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
 
-  entscheidungEintragErstellen = "erstellen";
+  entscheidungEintragErstellen = "eintrag";
+
+  
 }
 
 function sparerstellenClickenscheidung() {
   sparzielEnscheidungAnzeigeElmenteLaden();
 
-  eintrag.style.backgroundColor = "rgba(36, 122, 240)";
-  erstellen.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
+  erstellen.style.backgroundColor = "rgba(36, 122, 240)";
+  eintrag.style.backgroundColor = "rgba(36, 122, 240, 0.00)";
 
-  entscheidungEintragErstellen = "eintrag";
+  entscheidungEintragErstellen = "erstellen";
+
+  alert("erstellen");
 }
 
 sparziel_anzeigen();
