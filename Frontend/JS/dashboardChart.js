@@ -3,6 +3,7 @@ async function dashboardChartLaden() {
   let ausgabendata = new Array(30).fill(0);
   let gesamtdataz = new Array(30).fill(0);
   let gesamtdata = new Array(30).fill(0);
+  let sparendata = new Array(30).fill(0);
   let ausgabenmonat = 0;
   let einnahmenmonat = 0;
 
@@ -60,6 +61,58 @@ async function dashboardChartLaden() {
     }
   });
 
+  const responsetransaktion = await fetch(
+    `/api/sparentransaktion?nutzerid=${nutzerid}`,
+  );
+
+  const alleDatentransaktion = await responsetransaktion.json();
+
+  alleDatentransaktion.forEach((daten) => {
+    let r = 0;
+
+    if (daten.typ === "einnahme") {
+      while (r < 30) {
+        let d = 29 - r;
+
+        if (daten.datum === lezteTage[r]) {
+          sparendata[d] += Math.round(daten.betrag * 100) / 100;
+
+          gesamtdataz[d] -= Math.round(daten.betrag * 100) / 100;
+
+          ausgabendata[d] += Math.round(daten.betrag * 100) / 100;
+
+          r = 30;
+        } else {
+          r++;
+        }
+      }
+    } else if (daten.typ === "ausgabe") {
+      while (r < 30) {
+        let d = 29 - r;
+
+        if (daten.datum === lezteTage[r]) {
+          sparendata[d] -= Math.round(daten.betrag * 100) / 100;
+
+          gesamtdataz[d] += Math.round(daten.betrag * 100) / 100;
+
+          einnahmendata[d] += Math.round(daten.betrag * 100) / 100;
+
+          r = 30;
+        } else {
+          r++;
+        }
+      }
+    }
+  });
+
+  einnahmendata.forEach((daten) => {
+    einnahmenmonat += Math.round(daten * 100) / 100;
+  });
+
+  ausgabendata.forEach((daten) => {
+    ausgabenmonat += Math.round(daten * 100) / 100;
+  });
+
   let i = 0;
   gesamtdataz.forEach((daten) => {
     if (i === 0) {
@@ -70,14 +123,6 @@ async function dashboardChartLaden() {
     }
 
     i++;
-  });
-
-  einnahmendata.forEach((daten) => {
-    einnahmenmonat += Math.round(daten * 100) / 100;
-  });
-
-  ausgabendata.forEach((daten) => {
-    ausgabenmonat += Math.round(daten * 100) / 100;
   });
 
   let gesamtmonat = Math.round((einnahmenmonat - ausgabenmonat) * 100) / 100;
@@ -115,6 +160,10 @@ async function dashboardChartLaden() {
         name: "Gesamt",
         data: gesamtdata,
       },
+      {
+        name: "Sparen",
+        data: sparendata,
+      },
     ],
     xaxis: {
       categories: datums,
@@ -126,7 +175,7 @@ async function dashboardChartLaden() {
       curve: "smooth",
       width: 3,
     },
-    colors: ["#00E396", "#FF4560", "#008FFB"],
+    colors: ["#00E396", "#FF4560", "#008FFB", "#f59e0b"],
   };
 
   document.querySelector("#dashboradDiagramm").innerHTML = "";
