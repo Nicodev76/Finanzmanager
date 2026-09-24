@@ -10,21 +10,50 @@ async function sparziel_anzeigen() {
     return;
   }
 
+  const responsetransaktion = await fetch(
+    `/api/sparentransaktion?nutzerid=${nutzerid}`,
+  );
+
+  const alleDatentransaktion = await responsetransaktion.json();
+
+  let spartransaktinengesamtbetragarry = [];
+  alleDatentransaktion.forEach((eintrag) => {
+    let neuerWert = 0;
+
+    if (spartransaktinengesamtbetragarry[eintrag.internid] === undefined) {
+      spartransaktinengesamtbetragarry[eintrag.internid] = 0;
+    }
+
+    if (eintrag.typ === "einnahme") {
+      neuerWert =
+        spartransaktinengesamtbetragarry[eintrag.internid] + eintrag.betrag;
+    } else if (eintrag.typ === "ausgabe") {
+      neuerWert =
+        spartransaktinengesamtbetragarry[eintrag.internid] - eintrag.betrag;
+    }
+    spartransaktinengesamtbetragarry[eintrag.internid] =
+      Math.round(neuerWert * 100) / 100;
+  });
+
   const response = await fetch(`/api/sparen?nutzerid=${nutzerid}`);
 
   const alleDaten = await response.json();
 
   alleDaten.forEach((eintrag) => {
     const div = document.querySelector(".sparziel_anzeige");
+    let eingezahlterbetrag = spartransaktinengesamtbetragarry[eintrag.id];
+    if (eingezahlterbetrag === undefined) {
+      eingezahlterbetrag = 0;
+    }
 
     const prozentbetrag =
-      Math.round((eintrag.eingezahlterbetrag / eintrag.zielbetrag) * 100) / 100;
+      Math.round((eingezahlterbetrag / eintrag.zielbetrag) * 100) / 100;
 
     div.innerHTML +=
       "<div class='sparziel_div'><p>" +
       eintrag.name +
       "</p><div><div class='sparziel_beschriftungs_div'><p>" +
-      Math.round(eintrag.eingezahlterbetrag * 100) / 100 +
+      Math.round(eingezahlterbetrag * 100) / 100 +
       "/" +
       eintrag.zielbetrag +
       "€</p><p>" +
@@ -217,23 +246,23 @@ async function sparenEintragErstellen() {
     return;
   }
 
-  let internid = document.getElementById("sparenEintragSparzielAuswahlFeldSelect").value;
+  let internid = document.getElementById(
+    "sparenEintragSparzielAuswahlFeldSelect",
+  ).value;
   let datum = document.getElementById("eingabeDatumFeldSparenEintrag").value;
   let betrag = document.getElementById("sparenEingabeBetragInput").value;
   let name = document.getElementById("sparenEingabeNameInput").value;
-
 
   const datenPaket = {
     internid: internid,
     datum: datum,
     betrag: betrag,
-    typ: enscheidungEinnahmeAusgabe, 
+    typ: enscheidungEinnahmeAusgabe,
     name: name,
-    nutzerid: nutzerid, 
-  }
+    nutzerid: nutzerid,
+  };
 
   console.log(datenPaket);
-
 
   try {
     const response = await fetch("/api/sparentransaktion", {
@@ -255,8 +284,6 @@ async function sparenEintragErstellen() {
     console.error("verbindung zum Server fehlgeschlagen:", error);
     alert("Der Server ist nicht erreichbar!");
   }
-
-
 }
 
 function sparzielErstellenOderEintragen() {
