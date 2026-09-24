@@ -306,6 +306,7 @@ app.post("/api/sparentransaktion", (req, res) => {
 });
 
 
+
 app.get("/api/sparentransaktion", (req, res) => {
   const nutzerid = req.query.nutzerid;
 

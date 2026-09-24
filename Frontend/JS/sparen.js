@@ -208,4 +208,63 @@ sparzselect.classList.add("verstecken");
 einnhamausgabenfeld.style.display = "none";
 datumfeld.style.display = "none";
 
+async function sparenEintragErstellen() {
+  const nutzerid = localStorage.getItem("userId");
+
+  if (!nutzerid) {
+    alert("Du bist nicht eingeloggt!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  let internid = document.getElementById("sparenEintragSparzielAuswahlFeldSelect").value;
+  let datum = document.getElementById("eingabeDatumFeldSparenEintrag").value;
+  let betrag = document.getElementById("sparenEingabeBetragInput").value;
+  let name = document.getElementById("sparenEingabeNameInput").value;
+
+
+  const datenPaket = {
+    internid: internid,
+    datum: datum,
+    betrag: betrag,
+    typ: enscheidungEinnahmeAusgabe, 
+    name: name,
+    nutzerid: nutzerid, 
+  }
+
+  console.log(datenPaket);
+
+
+  try {
+    const response = await fetch("/api/sparentransaktion", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(datenPaket),
+    });
+
+    const ergebnis = await response.json();
+
+    if (response.ok) {
+      alert(ergebnis.meldung);
+    } else {
+      alert("Fehler:" + ergebnis.fehler);
+    }
+  } catch (error) {
+    console.error("verbindung zum Server fehlgeschlagen:", error);
+    alert("Der Server ist nicht erreichbar!");
+  }
+
+
+}
+
+function sparzielErstellenOderEintragen() {
+  if (entscheidungEintragErstellen === "erstellen") {
+    spazielerstellen();
+  } else if (entscheidungEintragErstellen === "eintrag") {
+    sparenEintragErstellen();
+  }
+}
+
 sparziel_anzeigen();
