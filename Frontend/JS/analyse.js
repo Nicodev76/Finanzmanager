@@ -60,7 +60,7 @@ async function transaktionenLadenUndAnzeigen() {
         eintrag.name +
         "</h4><p>" +
         eintrag.datum +
-        "</p></div><div class='analyse_transaktions_anzeige_betrag_div'><p style = 'color:#00E396'>" +
+        "</p></div><div class='analyse_transaktions_anzeige_betrag_div'><p style = 'color:#FF4560'>" +
         eintrag.betrag +
         "€</p></div></div>";
     }
