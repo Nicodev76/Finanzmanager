@@ -74,3 +74,45 @@
 
 
 }
+
+
+
+/* anzeige für die transaktionen */
+
+.analyse_transaktions_anzeige_div{
+  width: 100%;
+  
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 10px;
+  
+
+}
+
+.analyse_transaktions_anzeige{
+  width: 95%;
+  height: 60px;
+
+  background-color: rgba(17, 23, 30);
+  
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px;
+}
+
+.analyse_transaktions_anzeige_betrag_div{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
