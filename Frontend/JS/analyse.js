@@ -65,6 +65,86 @@ async function transaktionenLadenUndAnzeigen() {
         "€</p></div></div>";
     }
   });
+
+  // Kennzahlen laden und anzeigen
+
+  const tageglichesbudget = document.querySelector("#TaeglichesBudgetAnalyse");
+  const ausgabenDurchscnitt = document.querySelector(
+    "#AusgabenDurchscnittAnalyse",
+  );
+  const sparEinzahlungen = document.querySelector("#sparEinzahlungenAnalyse");
+
+  let tageglischesbudgetdata = 0;
+  let ausgabendurchscnittdata = 0;
+  let sparEinzahlungendata = 0;
+
+  const lezteTage = [];
+  const heute = new Date();
+
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(heute);
+    d.setDate(heute.getDate() - i);
+    lezteTage.push(d.toISOString().split("T")[0]);
+  }
+
+  alleDaten.forEach((eintrag) => {
+    let i = 0;
+    if (eintrag.typ === "e") {
+      while (i < 30) {
+        if (eintrag.datum === lezteTage[i]) {
+          tageglischesbudgetdata += eintrag.betrag;
+
+          i = 30;
+        } else {
+          i++;
+        }
+      }
+    } else if (eintrag.typ === "a") {
+      while (i < 30) {
+        if (eintrag.datum === lezteTage[i]) {
+          ausgabendurchscnittdata += eintrag.betrag;
+
+          i = 30;
+        } else {
+          i++;
+        }
+      }
+    }
+  });
+
+  alleDatentransaktion.forEach((eintrag) => {
+    let i = 0;
+    if (eintrag.typ === "einnahme"){
+      while (i < 30) {
+        if (eintrag.datum === lezteTage[i]) {
+          ausgabendurchscnittdata += eintrag.betrag;
+          tageglischesbudgetdata -= eintrag.betrag;
+
+          sparEinzahlungendata += eintrag.betrag
+          i = 30;
+        } else {
+          i++;
+        }
+      }
+    }
+    else if (eintrag.typ === "ausgabe"){
+      while (i < 30) {
+        if (eintrag.datum === lezteTage[i]) {
+          ausgabendurchscnittdata -= eintrag.betrag;
+          tageglischesbudgetdata += eintrag.betrag;
+
+          sparEinzahlungendata -= eintrag.betrag;
+          i = 30;
+        } else {
+          i++;
+        }
+      }
+    }
+  });
+
+  sparEinzahlungen.innerHTML = sparEinzahlungendata;
+  ausgabenDurchscnitt.innerHTML = ausgabendurchscnittdata / 30;
+  tageglichesbudget.innerHTML = tageglischesbudgetdata / 30;
 }
 
 // Laden von daten beim öffnen der webseite
