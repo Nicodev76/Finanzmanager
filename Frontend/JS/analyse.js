@@ -73,6 +73,7 @@ async function transaktionenLadenUndAnzeigen() {
     "#AusgabenDurchscnittAnalyse",
   );
   const sparEinzahlungen = document.querySelector("#sparEinzahlungenAnalyse");
+  const sparquote = document.querySelector("#main_sparqoute_anzeige");
 
   let tageglischesbudgetdata = 0;
   let ausgabendurchscnittdata = 0;
@@ -112,6 +113,8 @@ async function transaktionenLadenUndAnzeigen() {
     }
   });
 
+  let sparqoutendata = tageglischesbudgetdata;
+
   alleDatentransaktion.forEach((eintrag) => {
     let i = 0;
     if (eintrag.typ === "einnahme"){
@@ -142,9 +145,14 @@ async function transaktionenLadenUndAnzeigen() {
     }
   });
 
+  console.log("1:  " + sparqoutendata);
+  console.log("2:  " + sparEinzahlungendata);
+  sparqoutendata = (sparEinzahlungendata / sparqoutendata) * 100;
+
   sparEinzahlungen.innerHTML = sparEinzahlungendata;
   ausgabenDurchscnitt.innerHTML = ausgabendurchscnittdata / 30;
   tageglichesbudget.innerHTML = tageglischesbudgetdata / 30;
+  sparquote.innerHTML = Math.round(sparqoutendata * 100) / 100 + "%";
 }
 
 // Laden von daten beim öffnen der webseite
