@@ -1,0 +1,77 @@
+.einstellungen_finazmanager_div {
+  width: 100%;
+  height: 600px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.allgemeine_einstellungen_div {
+  height: 350px;
+  width: 330px;
+
+  background-color: rgba(11, 17, 23);
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  padding: 15px;
+  padding-top: 0px;
+}
+
+.sicherheits_einstellungen_div {
+  height: 250px;
+  width: 330px;
+
+  background-color: rgba(11, 17, 23);
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  padding: 15px;
+  padding-top: 10px;
+}
+
+.einstellungen_div {
+  width: 100%;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.einstellungen_element_div {
+  width: 95%;
+  height: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  margin-top: 10px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.einstellungen_element_div_bottom {
+  width: 95%;
+  height: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  margin-top: 10px;
+}
+
+.einstellungen_pfeil_p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+}

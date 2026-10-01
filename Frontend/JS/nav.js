@@ -4,7 +4,7 @@ function nav_main() {
     const aktien = document.querySelector(".aktien_div");
     const sparen = document.querySelector(".sparen_div");
     const reports = document.querySelector(".reports_div");
-    const mehr = document.querySelector(".mehr_div");
+    const einstellungen = document.querySelector(".einstellungen_finazmanager_div");
     const eingabe = document.querySelector(".eingabe_div");
     const sparenEingabe =document.querySelector(".sparen_eingabe_div");
 
@@ -13,7 +13,7 @@ function nav_main() {
     aktien.style.display = "none";
     sparen.style.display = "none";
     reports.style.display = "none";
-    mehr.style.display = "none";
+    einstellungen.style.display = "none";
     eingabe.style.display = "none";
     sparenEingabe.style.display = "none";
 
@@ -63,9 +63,9 @@ function nav_reports() {
 function nav_mehr() {
     nav_main();
 
-    const überschrift = document.querySelector(".überschrift").innerHTML = "Mehr";
+    const überschrift = document.querySelector(".überschrift").innerHTML = "Einstellung";
 
-    const mehr = document.querySelector(".mehr_div");
+    const mehr = document.querySelector(".einstellungen_finazmanager_div");
     mehr.style.display ="flex"
 }
 
