@@ -191,7 +191,7 @@ async function login() {
 
     localStorage.setItem("userId", ergebnis.userId);
     localStorage.setItem("username", ergebnis.username);
-    window.location.href = "app.html";
+    window.location.href = "starter.html";
   } catch (err) {
     console.error("Netzwerkfehler", err);
   }

@@ -1,0 +1,72 @@
+body {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
+  align-items: center;
+
+  margin: 0;
+  height: 100vh;
+
+  background-color: rgba(6, 15, 32);
+
+  color: white;
+}
+
+.webb_auswahl_div {
+  background-color: rgba(41, 48, 64);
+  width: 300px;
+  height: 100px;
+
+  border-radius: 10px;
+  border: 1px solid rgb(168, 176, 185);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+}
+
+.icon_div {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(86, 90, 101);
+
+  border-radius: 10px;
+}
+
+.schrift_div {
+
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.pfeil{
+  font-size: 50px;
+  font-weight: 1000;
+
+  color:rgba(138, 148, 161);
+}
+
+
+.webb_auswahl_div:hover {
+  filter: brightness(1.1);
+  cursor: pointer;
+}
