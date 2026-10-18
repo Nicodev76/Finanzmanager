@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DepoAnalyse</title>
+
+    <link rel="stylesheet" href="DepoAnalyseCSS/DepoAnaylse.css" />
+  </head>
+  <body>
+    <!-- Überschrift -->
+    <h1>DepoAnalyse</h1>
+
+    <!-- Verschidene Analyse abscnitte für das Depot. -->
+    <div class="depo_eintrag_div">
+      <h3>Aktueller Depo stand</h3>
+      <div class="Depo_Eintrag_Input_felder_div">
+        <p>Betrag:</p>
+        <input
+          type="text"
+          class="input_felder_für_eintrag"
+          placeholder="Gebe einen Betrag ein"
+        />
+      </div>
+      <div class="Depo_Eintrag_Input_felder_div">
+        <p>Datum:</p>
+        <input
+          type="date"
+          id="datumFeldFürEintrag"
+          class="input_felder_für_eintrag"
+        />
+      </div>
+      <div class="aktualisieren_button_für_den_depo_stand_div">
+        <button class="aktualisieren_button_für_den_depo_stand">
+          Aktualisieren
+        </button>
+      </div>
+    </div>
+
+    <div class="prognosen_div">
+      <h3>Prognosen</h3>
+      <div class="prognosen_anzeige_fenster_div">
+        <div class="prognosen_anzeige_div">
+          <p class="prognosen_überschrift_p">In 1 Monat:</p>
+          <p class="prognose_wert_1_monat">0% (0.00€)</p>
+        </div>
+        <div class="prognosen_anzeige_div">
+          <p class="prognosen_überschrift_p">In 1 Jahr:</p>
+          <p class="prognose_wert_1_jahr">0% (0.00€)</p>
+        </div>
+        <div class="prognosen_anzeige_div">
+          <p class="prognosen_überschrift_p">In 5 Jahren:</p>
+          <p class="prognose_wert_5_jahre">0% (0.00€)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meilenstein_planer_div">
+      <h3>Meilenstein Planer</h3>
+      <div class="eingaeb_fenster_div_bereich_div">
+        <div>
+          <p class="meilensteinplaner_überschrift_p">Wunschbetrag(€):</p>
+          <input
+            class="meilensteinplaner_input_betrag"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="Wunschbetrag"
+          />
+        </div>
+        <div>
+          <p class="meilensteinplaner_überschrift_p">ZielDatum:</p>
+          <input class="meilensteinplaner_input_date" type="date" />
+        </div>
+      </div>
+      <div class="meilensteinplaner_button_div">
+        <button
+          style="display: unset"
+          class="meilensteinplaber_bestätigungs_button"
+        >
+          Meilenstein hinzufügen
+        </button>
+        <button
+          style="display: none"
+          class="meilensteinplaber_bestätigungs_button"
+        >
+          Bestätigen
+        </button>
+      </div>
+      <div class="meilensteinplaner_tagesplan_abschnitt_div">
+        <h3>Tagesplan</h3>
+        <div class="meilensteinplaner_tagesplan_abschnitt_beschreibungs_p">
+          <p>Tag</p>
+          <p>Datum</p>
+          <p>Ziel</p>
+          <p>Tats.</p>
+          <p>Diff.</p>
+        </div>
+        <div class="meilenscteinplaner_tagesplan_einträge_div_div" style="color: black;">
+          <!-- Die Tagesplan Einträge werden hier angezeigt. -->
+
+          <div style="background-color: rgb(218, 218, 218);" class="meilensteinplaner_tagesplan_abschnitt_beschreibungs_p">
+            <p>1</p>
+            <p>18.10.2026</p>
+            <p>3,85%</p>
+            <p>1.50%</p>
+            <p>2.35%</p>
+          </div>
+
+          <div style="background-color: rgb(255, 255, 255);" class="meilensteinplaner_tagesplan_abschnitt_beschreibungs_p">
+            <p>1</p>
+            <p>18.10.2026</p>
+            <p>3,85%</p>
+            <p>1.50%</p>
+            <p>2.35%</p>
+          </div>
+
+          <div style="background-color: rgb(218, 218, 218);" class="meilensteinplaner_tagesplan_abschnitt_beschreibungs_p">
+            <p>1</p>
+            <p>18.10.2026</p>
+            <p>3,85%</p>
+            <p>1.50%</p>
+            <p>2.35%</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="DepoAnalyseJS/DepoAnalyse.js"></script>
+  </body>
+</html>

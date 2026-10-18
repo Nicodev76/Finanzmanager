@@ -1,0 +1,219 @@
+body {
+  background-color: rgba(11, 12, 16);
+  color: white;
+
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.depo_eintrag_div {
+  width: 330px;
+  height: 220px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+
+  background-color: rgba(12, 17, 23);
+
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input_felder_für_eintrag {
+  color-scheme: dark;
+
+  width: 200px;
+  height: 40px;
+
+  background-color: rgba(16, 23, 31);
+
+  border-radius: 10px;
+  border: none;
+
+  text-align: center;
+}
+
+.Depo_Eintrag_Input_felder_div {
+  height: 100px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.aktualisieren_button_für_den_depo_stand {
+  width: 200px;
+  height: 40px;
+
+  background-color: rgba(36, 122, 240);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+
+  border-radius: 10px;
+  border: none;
+
+  text-align: center;
+}
+
+.aktualisieren_button_für_den_depo_stand_div {
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.prognosen_div {
+  width: 330px;
+  height: 150px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+
+  background-color: rgba(12, 17, 23);
+
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prognosen_anzeige_fenster_div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.prognosen_anzeige_div {
+  background-color: rgba(17, 23, 30);
+  width: 100px;
+  height: 70px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  font-size: 12px;
+  font-weight: lighter;
+
+  padding-left: 10px;
+}
+
+.prognosen_überschrift_p {
+  font-size: small;
+  font-weight: lighter;
+}
+
+.meilenstein_planer_div {
+  width: 330px;
+  height: 460px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+
+  background-color: rgba(12, 17, 23);
+
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eingaeb_fenster_div_bereich_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.meilensteinplaner_überschrift_p {
+  font-size: small;
+  font-weight: lighter;
+}
+
+.meilensteinplaner_input_betrag {
+  color-scheme: dark;
+
+  width: 150px;
+  height: 40px;
+
+  background-color: rgba(16, 23, 31);
+
+  border-radius: 10px;
+  border: none;
+
+  text-align: center;
+}
+
+.meilensteinplaner_input_date {
+  color-scheme: dark;
+
+  width: 150px;
+  height: 40px;
+
+  background-color: rgba(16, 23, 31);
+
+  border-radius: 10px;
+  border: none;
+
+  text-align: center;
+}
+
+.meilensteinplaner_button_div {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.meilensteinplaber_bestätigungs_button {
+  width: 200px;
+  height: 40px;
+
+  background-color: rgba(36, 122, 240);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+
+  border-radius: 10px;
+  border: none;
+
+  text-align: center;
+}
+
+.aktualisieren_button_für_den_depo_stand:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+.input_felder_für_eintrag:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.meilensteinplaner_tagesplan_abschnitt_beschreibungs_p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 5px;
+}
+
+.meilenscteinplaner_tagesplan_einträge_div_div {
+  height: 140px;
+  width: 100%;
+
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 10px;
+
+  overflow-y: auto;
+}
