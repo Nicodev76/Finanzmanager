@@ -102,6 +102,28 @@ db.serialize(() => {
     },
   );
 
+  db.run(
+    `CREATE TABLE IF NOT EXISTS depoanalyseeintrag (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nutzerid INTEGER NOT NULL,
+    betrag INTEGER NOT NULL,
+    datum TEXT NOT NULL,
+    
+
+  )`,
+
+    (err) => {
+      if (err) {
+        console.error(
+          "Es ist ein Fehler bei der erstellung der depoanalyseeintragiste Tabbelle aufgetreten",
+          err.message,
+        );
+      } else {
+        console.log("Die depoanalyseeintragliste Tabbele wurde erfolgreich erstellt");
+      }
+    },
+  );
+
 });
 
 const express = require("express");
@@ -327,6 +349,29 @@ app.get("/api/sparentransaktion", (req, res) => {
     }
 
     res.json(rows);
+  });
+});
+
+// Die Datenbanken für die DepoAnaylyse 
+
+app.post("/api/DepoAnalyseEintrag", (req, res) => {
+  const {nutzerid, betrag, datum} = req.body;
+
+  const sql =
+    "INSERT INTO depoanalyseeintrag (nutzerid, betrag, datum) VALUES (?,?,?)";
+
+  db.run(sql, [nutzerid, betrag, datum], function (err) {
+    if (err) {
+      console.error("Fehler beim speichern der depoanalyseeintrag daten", err.message);
+      return res
+        .status(500)
+        .json({ fehler: "depoanalyseeintrag Daten konnten nicht gespeichert werden" });
+    }
+
+    res.json({
+      meldung: "depoanalyseeintrag Daten wurden erfolgreich gespeichert",
+      id: this.lastID,
+    });
   });
 });
 
